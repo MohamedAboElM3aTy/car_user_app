@@ -1,0 +1,8 @@
+name: car_user_app
+
+packages:
+  - apps/**
+
+scripts:
+  analyze:
+    exec: dart analyze .  
