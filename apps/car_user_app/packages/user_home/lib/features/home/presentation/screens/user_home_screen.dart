@@ -1,7 +1,6 @@
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:user_home/features/home/presentation/screens/car_listing_screen.dart';
 import 'package:user_home/features/home/presentation/widgets/car_category_list_view.dart';
 import 'package:user_home/features/home/presentation/widgets/cars_available_list_view.dart';
 import 'package:user_home/features/home/presentation/widgets/custom_app_bar.dart';
@@ -47,10 +46,8 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
               ),
               const Expanded(child: SizedBox()),
               InkWell(
-                onTap: () => context.navigator.push(
-                  MaterialPageRoute(
-                    builder: (_) => const CarListingScreen(),
-                  ),
+                onTap: () => context.navigator.pushNamed(
+                  AppRoutes.userCarListingRoute,
                 ),
                 child: Icon(
                   Icons.arrow_forward_ios_outlined,

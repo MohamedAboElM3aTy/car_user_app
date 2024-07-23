@@ -21,6 +21,10 @@ class CarHolderContainer extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(25.r),
+        border: Border.all(
+          color: Colors.grey.shade200,
+          width: 1.0,
+        ),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,

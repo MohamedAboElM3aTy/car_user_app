@@ -72,7 +72,7 @@ class AppServices {
                       size: 24,
                       color: Color(0xFF27272A),
                     ),
-                    onPressed: () => Navigator.of(context).pop(),
+                    onPressed: () => context.navigator.pop(),
                   ),
                 ],
               ),

@@ -4,14 +4,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:user_home/features/home/presentation/widgets/elliptical_container.dart';
 import 'package:user_home/features/home/presentation/widgets/page_title.dart';
 
-class SearchPage extends StatefulWidget {
-  const SearchPage({super.key});
+class SearchScreen extends StatefulWidget {
+  const SearchScreen({super.key});
 
   @override
-  State<SearchPage> createState() => _SearchPageState();
+  State<SearchScreen> createState() => _SearchScreenState();
 }
 
-class _SearchPageState extends State<SearchPage> {
+class _SearchScreenState extends State<SearchScreen> {
   late final TextEditingController _searchController;
 
   @override

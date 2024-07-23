@@ -27,6 +27,21 @@ Route<dynamic> onGenerateUser(RouteSettings settings) {
         builder: (_) => const UserNavBar(),
         settings: settings,
       );
+    case AppRoutes.userCarListingRoute:
+      return MaterialPageRoute(
+        builder: (_) => const CarListingScreen(),
+        settings: settings,
+      );
+    case AppRoutes.userCarSearchRoute:
+      return MaterialPageRoute(
+        builder: (_) => const SearchScreen(),
+        settings: settings,
+      );
+    // case AppRoutes.userCarDetailRoute:
+    //   return MaterialPageRoute(
+    //     builder: (_) => CarDetailsScreen(),
+    //     settings: settings,
+    //   );
     default:
       return MaterialPageRoute(
         builder: (_) => const EmptyScreen(

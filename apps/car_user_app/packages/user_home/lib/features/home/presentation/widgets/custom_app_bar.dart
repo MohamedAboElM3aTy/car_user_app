@@ -2,7 +2,6 @@ import 'package:core/core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:user_home/features/home/presentation/screens/search_screen.dart';
 
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar({super.key});
@@ -23,10 +22,8 @@ class CustomAppBar extends StatelessWidget {
               color: Colors.white,
             ),
             InkWell(
-              onTap: () => context.navigator.push(
-                MaterialPageRoute(
-                  builder: (_) => const SearchPage(),
-                ),
+              onTap: () => context.navigator.pushNamed(
+                AppRoutes.userCarSearchRoute,
               ),
               child: const Icon(
                 CupertinoIcons.search,
