@@ -14,5 +14,5 @@ abstract class SupabaseAuthService {
 
   User? getCurrentUser();
 
-  Future<void> signOut();
+  Future<Either<GenericFailure,bool>> signOut();
 }

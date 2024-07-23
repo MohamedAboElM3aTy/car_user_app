@@ -1,6 +1,6 @@
 import 'package:core/core.dart';
 import 'package:core/views/pages/onboarding_labels.dart';
-import 'package:core/views/widgets/onboarding/custom_dots_indicator.dart';
+import 'package:core/views/widgets/custom_dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

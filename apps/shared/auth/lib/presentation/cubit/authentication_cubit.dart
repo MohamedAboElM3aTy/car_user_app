@@ -11,7 +11,8 @@ part 'authentication_cubit.freezed.dart';
 @injectable
 class AuthenticationCubit extends Cubit<AuthenticationState> {
   final SupabaseAuthService _supabaseAuthService;
-  AuthenticationCubit(this._supabaseAuthService) : super(const AuthenticationState.initial());
+  AuthenticationCubit(this._supabaseAuthService)
+      : super(const AuthenticationState.initial());
 
   Future<void> signUp({
     required AppUser? appUser,
@@ -55,13 +56,15 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
         ),
       );
       response.fold(
-            (error) => emit(AuthenticationState.error(message: error.message)),
-            (user) => emit(
-              AuthenticationState.authenticated(isUserInHisApp: user != null),
+        (error) => emit(AuthenticationState.error(message: error.message)),
+        (user) => emit(
+          AuthenticationState.authenticated(isUserInHisApp: user != null),
         ),
       );
     } on GenericFailure catch (error) {
       emit(AuthenticationState.error(message: error.toString()));
     }
   }
+
+  void logout() => emit(const AuthenticationState.initial());
 }

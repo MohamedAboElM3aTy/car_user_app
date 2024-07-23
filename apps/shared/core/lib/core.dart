@@ -46,3 +46,4 @@ export 'views/widgets/divider/app_divider.dart';
 export 'views/widgets/divider/or_divider.dart';
 export 'views/widgets/text_fields/password_text_field.dart';
 export 'views/widgets/text_fields/rounded_text_field.dart';
+export 'views/widgets/loading_alert/loading_alert.dart';

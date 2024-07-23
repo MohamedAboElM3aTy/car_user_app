@@ -54,7 +54,14 @@ class SupabaseAuthImplementation implements SupabaseAuthService {
   }
 
   @override
-  Future<void> signOut() async => _supabase.auth.signOut();
+  Future<Either<GenericFailure,bool>> signOut() async {
+    try {
+        await _supabase.auth.signOut();
+        return const Right(true);
+    } on Exception catch (error) {
+      return Left( GenericFailure(message: error.toString()));
+    }
+  }
 
   @override
   User? getCurrentUser() => _supabase.auth.currentUser;

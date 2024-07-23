@@ -30,7 +30,7 @@ extension AppContext on BuildContext {
     SnackBarStates state = SnackBarStates.idle,
     FlashPosition position = FlashPosition.top,
     Duration? duration,
-    required snackBarType,
+    dynamic snackBarType,
   }) =>
       this.showFlash<T>(
         duration: duration ?? const Duration(seconds: 3),
