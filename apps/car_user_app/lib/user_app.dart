@@ -1,6 +1,12 @@
+import 'dart:developer';
+
+import 'package:auth/auth.dart';
+import 'package:bloc/bloc.dart';
+import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class UserApp extends StatelessWidget {
   const UserApp({super.key});
@@ -8,15 +14,15 @@ class UserApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      designSize: const Size(375, 812),
+      // The size of the smallest iphone ie iPhone 6's
+      designSize: const Size(375, 667),
+      // Adapt the text according to min width & Height
       minTextAdapt: true,
       useInheritedMediaQuery: true,
-      builder: (_, child) => const MaterialApp(
-        home: Scaffold(
-          body: Center(
-            child: Text('Hello User App!'),
-          ),
-        ),
+      builder: (_, child) => MaterialApp(
+        title: 'Car User App',
+        onGenerateRoute: onGenerateUser,
+        theme: userTheme(),
       ),
     );
   }
@@ -33,4 +39,16 @@ Future<void> initializeApp() async {
   WidgetsFlutterBinding.ensureInitialized();
   await ScreenUtil.ensureScreenSize();
   preventLandScape();
+  await Supabase.initialize(
+    url: Env.supabaseUrl,
+    anonKey: Env.supabaseAnonKey,
+  );
+  await initAuthGetIt();
+  Bloc.observer = AppBlocObserver();
+  FlutterError.onError = (details) {
+    log(
+      '🚨 ${details.exceptionAsString()}',
+      stackTrace: details.stack,
+    );
+  };
 }

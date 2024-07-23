@@ -7,11 +7,22 @@ environment:
   sdk: '>=3.4.3 <4.0.0'
 
 dependencies:
+  auth:
+    path: ../shared/auth/
+  bloc: ^8.1.4
+  core:
+    path: ../shared/core/
+  dots_indicator: ^3.0.0
   flutter:
     sdk: flutter
+  flutter_native_splash: ^2.4.1
   flutter_screenutil: ^5.9.3
+  supabase_flutter: ^2.5.8
+  user_home:
+    path: packages/user_home/
 
 dev_dependencies:
+  flutter_launcher_icons: ^0.13.1
   flutter_lints: ^3.0.0
   flutter_test:
     sdk: flutter
@@ -19,3 +30,24 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+
+# ? dart pub run flutter_launcher_icons
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "../assets/images/car_user_logo.png"
+  min_sdk_android: 21 # android min sdk min:16, default 21
+
+# ? dart run flutter_native_splash:create
+flutter_native_splash:
+  color: "#ffffff"
+  image: "../assets/images/white_background.png"
+  android_12:
+    color: "#ffffff"
+    image: "../assets/images/white_background.png"
+
+assets:
+  - ../assets/images/
+  - ../assets/lottie/
+  - ../assets/svg/
+  - ../assets/png/

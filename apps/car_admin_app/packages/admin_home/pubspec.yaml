@@ -1,0 +1,23 @@
+name: admin_home
+description: "A new Flutter package project."
+version: 0.0.1
+publish_to: 'none'
+
+environment:
+  sdk: '>=3.4.3 <4.0.0'
+  flutter: ">=1.17.0"
+
+dependencies:
+  core:
+    path: ../../../shared/core
+  flutter:
+    sdk: flutter
+  flutter_screenutil: ^5.9.3
+  persistent_bottom_nav_bar_2: ^5.0.3
+
+dev_dependencies:
+  flutter_lints: ^3.0.0
+  flutter_test:
+    sdk: flutter
+
+flutter: 
