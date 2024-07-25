@@ -7,7 +7,9 @@ import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 import 'package:user_home/features/home/presentation/widgets/date_bottom_sheet.dart';
 
 class FilterDateSheet extends StatefulWidget {
-  const FilterDateSheet({super.key});
+  const FilterDateSheet({super.key, required this.onDateRangeSelected});
+
+  final Function(PickerDateRange?) onDateRangeSelected;
 
   @override
   State<FilterDateSheet> createState() => _FilterDateSheetState();
@@ -15,6 +17,16 @@ class FilterDateSheet extends StatefulWidget {
 
 class _FilterDateSheetState extends State<FilterDateSheet> {
   PickerDateRange? _dateRange;
+  final TextEditingController _startDateController = TextEditingController();
+  final TextEditingController _endDateController = TextEditingController();
+
+  @override
+  void dispose() {
+    _startDateController.dispose();
+    _endDateController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -46,6 +58,10 @@ class _FilterDateSheetState extends State<FilterDateSheet> {
                 );
                 if (startDateResult != null) {
                   setState(() => _dateRange = startDateResult);
+                  _startDateController.text = _dateRange!.startDate.toString();
+                  _endDateController.text = _dateRange!.endDate.toString();
+
+                  widget.onDateRangeSelected(_dateRange);
                 }
               },
             ),
@@ -63,6 +79,9 @@ class _FilterDateSheetState extends State<FilterDateSheet> {
                 );
                 if (endDateResult != null) {
                   setState(() => _dateRange = endDateResult);
+                  _startDateController.text = _dateRange!.startDate.toString();
+                  _endDateController.text = _dateRange!.endDate.toString();
+                  widget.onDateRangeSelected(_dateRange);
                 }
               },
             ),
@@ -100,6 +119,8 @@ class _FilterDateSheetState extends State<FilterDateSheet> {
           ),
           child: TextField(
             onTap: onTap,
+            controller:
+                label == 'From' ? _startDateController : _endDateController,
             decoration: InputDecoration(
               border: InputBorder.none,
               hintText: hintText,

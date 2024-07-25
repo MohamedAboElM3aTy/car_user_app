@@ -1,6 +1,8 @@
-import 'package:admin_home/view/pages/admin_home_screen.dart';
+import 'package:admin_home/booking_details/presentation/screens/history_screen.dart';
+import 'package:admin_home/home/presentation/pages/admin_home_screen.dart';
 import 'package:core/app/constants/app_colors.dart';
 import 'package:core/app/extensions/context.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:persistent_bottom_nav_bar_2/persistent_tab_view.dart';
@@ -30,15 +32,7 @@ class _AdminNavBarState extends State<AdminNavBar> {
   List<Widget> _buildScreens() {
     return [
       const AdminHomeScreen(),
-      const Center(
-        child: Text('Welcome To Second screen'),
-      ),
-      const Center(
-        child: Text('Welcome To Third screen'),
-      ),
-      const Center(
-        child: Text('Welcome To Fourth screen'),
-      ),
+      const BookingDetailsScreen(),
     ];
   }
 
@@ -46,19 +40,11 @@ class _AdminNavBarState extends State<AdminNavBar> {
     return [
       _buildItem(
         label: 'Home',
-        icon: Icons.home_outlined,
+        icon: CupertinoIcons.home,
       ),
       _buildItem(
-        label: 'Explore',
-        icon: Icons.explore_outlined,
-      ),
-      _buildItem(
-        label: 'Favorites',
-        icon: Icons.work_outline_sharp,
-      ),
-      _buildItem(
-        label: 'Profile',
-        icon: Icons.person_outline,
+        label: 'History',
+        icon: Icons.history,
       ),
     ];
   }
@@ -95,7 +81,7 @@ class _AdminNavBarState extends State<AdminNavBar> {
       handleAndroidBackButtonPress: true,
       resizeToAvoidBottomInset: true,
       stateManagement: true,
-      hideNavigationBarWhenKeyboardShows: true,
+      hideNavigationBarWhenKeyboardShows: false,
       popAllScreensOnTapOfSelectedTab: true,
       popActionScreens: PopActionScreensType.all,
       itemAnimationProperties: const ItemAnimationProperties(
@@ -107,7 +93,7 @@ class _AdminNavBarState extends State<AdminNavBar> {
         curve: Curves.ease,
         duration: Duration(milliseconds: 200),
       ),
-      navBarStyle: NavBarStyle.style6,
+      navBarStyle: NavBarStyle.style1,
     );
   }
 }

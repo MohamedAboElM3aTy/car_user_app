@@ -1,8 +1,8 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
-import 'package:user_home/features/home/domain/car_model.dart';
 import 'package:user_home/features/home/presentation/widgets/car_details/book_now.dart';
 import 'package:user_home/features/home/presentation/widgets/car_details/build_label.dart';
 import 'package:user_home/features/home/presentation/widgets/car_details/car_details_box.dart';
@@ -34,8 +34,8 @@ class _CarDetailsScreenState extends State<CarDetailsScreen> {
             bottom: context.screenHeight * 0.65,
             child: SizedBox(
               width: context.screenWidth,
-              child: Image.asset(
-                AppImages.onBoardingImage,
+              child: CachedNetworkImage(
+                imageUrl: widget.car.imagePath,
                 fit: BoxFit.cover,
               ),
             ),
@@ -67,32 +67,29 @@ class _CarDetailsScreenState extends State<CarDetailsScreen> {
                     horizontalPadding: 25.w,
                     labelColor: AppColors.secondText,
                   ),
-                  const Gap(10),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 10.w),
                     child: ModelWithPriceRow(car: widget.car),
                   ),
-                  const Gap(20),
+                  const Gap(10),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 20.w),
                     child: DetailsBox(car: widget.car),
                   ),
-                  const Gap(20),
-                  const BuildLabel(label: 'Corolla'),
-                  const Gap(20),
+                  const Gap(10),
+                  const BuildLabel(label: 'Over View'),
+                  const Gap(10),
                   BuildLabel(
-                    label:
-                        """Dual Motor All-Wheel Drive unlocks more range than any other vehicle in our current lineup, with insane power and maximum control.""",
+                    label: """${widget.car.overview}""",
                     labelHeight: 1.5,
                     fontSize: 13.sp,
                     fontWeight: FontWeight.normal,
                   ),
-                  const Gap(20),
-                  const BuildLabel(label: 'Details'),
-                  const Gap(20),
+                  const Gap(10),
+                  const BuildLabel(label: 'Description'),
+                  const Gap(10),
                   BuildLabel(
-                    label:
-                        """Dual Motor All-Wheel Drive unlocks more range than any other vehicle in our current lineup, with insane power and maximum control.""",
+                    label: """${widget.car.description}""",
                     labelHeight: 1.5,
                     fontSize: 13.sp,
                     fontWeight: FontWeight.normal,
@@ -102,7 +99,7 @@ class _CarDetailsScreenState extends State<CarDetailsScreen> {
             ),
           ),
           const SolidHeartComponent(),
-          const BookNow(),
+          BookNow(car: widget.car),
         ],
       ),
     );

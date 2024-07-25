@@ -21,7 +21,7 @@ class SupabaseAuthImplementation implements SupabaseAuthService {
           'email': appUser.email,
           'firstName': appUser.firstName,
           'lastName': appUser.lastName,
-          'userRole': appUser.userRole.toString().split('.').last,
+          'userRole': appUser.userRole.name,
         },
       );
       return Right(userCredentials.user);
@@ -43,6 +43,13 @@ class SupabaseAuthImplementation implements SupabaseAuthService {
         email: appUser.email,
         password: appUser.password,
       );
+      if (userCredentials.user?.userMetadata?["userRole"] != appUser.userRole.name) {
+        return Left(
+          GenericFailure(
+            message: 'User is not authorized to access this app',
+          ),
+        );
+      }
       return Right(userCredentials.user);
     } on Exception catch (error) {
       return Left(
@@ -54,12 +61,12 @@ class SupabaseAuthImplementation implements SupabaseAuthService {
   }
 
   @override
-  Future<Either<GenericFailure,bool>> signOut() async {
+  Future<Either<GenericFailure, bool>> signOut() async {
     try {
-        await _supabase.auth.signOut();
-        return const Right(true);
+      await _supabase.auth.signOut();
+      return const Right(true);
     } on Exception catch (error) {
-      return Left( GenericFailure(message: error.toString()));
+      return Left(GenericFailure(message: error.toString()));
     }
   }
 

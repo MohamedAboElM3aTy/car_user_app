@@ -8,7 +8,7 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auth/data/repository/supabase_auth_implementaiton.dart'
+import 'package:auth/data/repository/supabase_auth_implementation.dart'
     as _i130;
 import 'package:auth/data/services/supabase_auth_service.dart' as _i540;
 import 'package:auth/presentation/cubit/authentication_cubit.dart' as _i26;

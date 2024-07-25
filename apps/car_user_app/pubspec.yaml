@@ -17,6 +17,7 @@ dependencies:
     sdk: flutter
   flutter_native_splash: ^2.4.1
   flutter_screenutil: ^5.9.3
+  shimmer: ^3.0.0
   supabase_flutter: ^2.5.8
   user_home:
     path: packages/user_home/

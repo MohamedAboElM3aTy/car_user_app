@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:auth/auth.dart';
 import 'package:bloc/bloc.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
@@ -42,6 +43,7 @@ Future<void> initializeApp() async {
     url: Env.supabaseUrl,
     anonKey: Env.supabaseAnonKey,
   );
+  await initAuthGetIt();
   Bloc.observer = AppBlocObserver();
   FlutterError.onError = (details) {
     log(

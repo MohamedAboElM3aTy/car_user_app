@@ -18,6 +18,8 @@ dependencies:
   supabase_flutter: ^2.5.8
   admin_home:
     path: packages/admin_home/
+  auth: 
+    path: ../shared/auth/
 
 dev_dependencies:
   flutter_lints: ^3.0.0
@@ -43,3 +45,9 @@ flutter_native_splash:
   android_12:
     color: "#ffffff"
     image: "../assets/images/white_background.png"
+
+assets:
+  - ../assets/images/
+  - ../assets/lottie/
+  - ../assets/svg/
+  - ../assets/png/

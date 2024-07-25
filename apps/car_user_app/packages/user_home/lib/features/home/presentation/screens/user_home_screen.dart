@@ -4,8 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:user_home/features/home/presentation/widgets/car_category_list_view.dart';
 import 'package:user_home/features/home/presentation/widgets/cars_available_list_view.dart';
 import 'package:user_home/features/home/presentation/widgets/custom_app_bar.dart';
-import 'package:user_home/features/home/presentation/widgets/elliptical_container.dart';
-import 'package:user_home/features/home/presentation/widgets/page_title.dart';
+import 'package:core/views/widgets/page_title.dart';
 
 class UserHomeScreen extends StatefulWidget {
   const UserHomeScreen({super.key});

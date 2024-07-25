@@ -2,8 +2,11 @@ import 'package:auth/di/injection_container.dart';
 import 'package:auth/entity/app_user.dart';
 import 'package:auth/presentation/cubit/authentication_cubit.dart';
 import 'package:auth/presentation/widgets/forget_password.dart';
-import 'package:auth/presentation/widgets/password_requirements.dart';
+import 'package:auth/presentation/widgets/login_body.dart';
+import 'package:auth/presentation/widgets/password_validations.dart';
+import 'package:auth/presentation/widgets/sign_up_body.dart';
 import 'package:core/core.dart';
+import 'package:core/views/widgets/page_title.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -19,16 +22,17 @@ class AuthScreen extends StatefulWidget {
 
 class _AuthScreenState extends State<AuthScreen> {
   late final GlobalKey<FormState> _formKey;
-  late final TextEditingController _emailController;
-  late final TextEditingController _passwordController;
-  late final TextEditingController _firstNameController;
-  late final TextEditingController _lastNameController;
-  late final FocusNode _emailFocusNode;
-  late final FocusNode _passwordFocusNode;
-  late final FocusNode _firstNameFocusNode;
-  late final FocusNode _lastNameFocusNode;
+  late final TextEditingController _emailController,
+      _passwordController,
+      _firstNameController,
+      _lastNameController;
+  late final FocusNode _emailFocusNode,
+      _passwordFocusNode,
+      _firstNameFocusNode,
+      _lastNameFocusNode;
   var _authForm = AuthForm.login;
   late final AuthenticationCubit _authCubit;
+  bool hasLowerCase = false, hasUpperCase = false, hasSpecialCharacters = false;
 
   @override
   void initState() {
@@ -42,6 +46,7 @@ class _AuthScreenState extends State<AuthScreen> {
     _firstNameFocusNode = FocusNode();
     _lastNameFocusNode = FocusNode();
     _authCubit = getIt<AuthenticationCubit>();
+    setupPasswordControllerListener();
     super.initState();
   }
 
@@ -59,6 +64,21 @@ class _AuthScreenState extends State<AuthScreen> {
     super.dispose();
   }
 
+  void setupPasswordControllerListener() {
+    _passwordController.addListener(
+      () {
+        setState(
+          () {
+            hasLowerCase = AppRegex.hasLowerCase(_passwordController.text);
+            hasUpperCase = AppRegex.hasUpperCase(_passwordController.text);
+            hasSpecialCharacters =
+                AppRegex.hasSpecialCharacter(_passwordController.text);
+          },
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -74,89 +94,42 @@ class _AuthScreenState extends State<AuthScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    _authForm == AuthForm.login ? 'Login' : 'Sign Up',
-                    style: context.textTheme.titleLarge?.copyWith(
+                  PageTitle(
+                    title: _authForm == AuthForm.register ? 'Sign Up' : 'Login',
+                    style: context.textTheme.labelMedium!.copyWith(
                       fontSize: 22.sp,
                       fontWeight: FontWeight.w600,
                       color: context.primaryColor,
                     ),
                   ),
-                  20.emptyHeight,
+                  10.emptyHeight,
                   _authForm == AuthForm.register
-                      ? RoundedTextField(
-                          controller: _firstNameController,
-                          focusNode: _firstNameFocusNode,
-                          autoFocus:
-                              _authForm == AuthForm.register ? true : false,
-                          onEditingComplete: () => FocusScope.of(context)
-                              .requestFocus(_lastNameFocusNode),
-                          changed: (firstName) =>
-                              _firstNameController.text = firstName,
-                          validator: (firstName) {
-                            if (firstName!.isEmpty) {
-                              return 'Please Enter Valid Name';
-                            }
-                            return null;
-                          },
-                          hintText: 'First Name',
+                      ? SignUpBody(
+                          emailController: _emailController,
+                          passwordController: _passwordController,
+                          passwordFocusNode: _passwordFocusNode,
+                          firstNameController: _firstNameController,
+                          firstNameFocusNode: _firstNameFocusNode,
+                          authForm: _authForm,
+                          lastNameFocusNode: _lastNameFocusNode,
+                          lastNameController: _lastNameController,
+                          emailFocusNode: _emailFocusNode,
                         )
-                      : const SizedBox.shrink(),
-                  _authForm == AuthForm.register
-                      ? RoundedTextField(
-                          controller: _lastNameController,
-                          focusNode: _lastNameFocusNode,
-                          autoFocus: false,
-                          onEditingComplete: () => FocusScope.of(context)
-                              .requestFocus(_emailFocusNode),
-                          changed: (lastName) =>
-                              _lastNameController.text = lastName,
-                          validator: (lastName) {
-                            if (lastName!.isEmpty) {
-                              return 'Please Enter Valid Name';
-                            }
-                            return null;
-                          },
-                          hintText: 'Last Name',
-                        )
-                      : const SizedBox.shrink(),
-                  RoundedTextField(
-                    controller: _emailController,
-                    focusNode: _emailFocusNode,
-                    autoFocus: _authForm == AuthForm.login ? true : false,
-                    onEditingComplete: () =>
-                        FocusScope.of(context).requestFocus(_passwordFocusNode),
-                    changed: (email) => _emailController.text = email,
-                    validator: (email) {
-                      if (email == null ||
-                          email.isEmpty ||
-                          !email.contains('@')) {
-                        return 'Please Enter valid Email';
-                      }
-                      return null;
-                    },
-                    hintText: 'Email',
-                  ),
-                  PasswordTextField(
-                    controller: _passwordController,
-                    focusNode: _passwordFocusNode,
-                    onTap: (password) => _passwordController.text = password,
-                    validator: (password) {
-                      if (password == null ||
-                          password.isEmpty ||
-                          password.length < 8) {
-                        return _authForm == AuthForm.register
-                            ? 'Enter A valid Password'
-                            : 'Wrong Password';
-                      }
-                      return null;
-                    },
-                  ),
+                      : LoginBody(
+                          emailController: _emailController,
+                          emailFocusNode: _emailFocusNode,
+                          authForm: _authForm,
+                          passwordFocusNode: _passwordFocusNode,
+                          passwordController: _passwordController,
+                        ),
                   15.emptyHeight,
                   _authForm == AuthForm.register
-                      ? const PasswordRequirements()
+                      ? PasswordValidations(
+                          hasLowerCase: hasLowerCase,
+                          hasUpperCase: hasUpperCase,
+                          hasSpecialCharacters: hasSpecialCharacters,
+                        )
                       : const SizedBox.shrink(),
-                  // 30.emptyHeight,
                   _authForm == AuthForm.login
                       ? const ForgetPassword()
                       : const SizedBox.shrink(),
@@ -223,20 +196,20 @@ class _AuthScreenState extends State<AuthScreen> {
                       );
                     },
                   ),
-                  20.emptyHeight,
+                  30.emptyHeight,
                   Align(
                     alignment: Alignment.center,
                     child: InkWell(
-                      onTap: () => setState(
-                        () {
-                          _formKey.currentState!.reset();
+                      onTap: () {
+                        _formKey.currentState!.reset();
+                        setState(() {
                           if (_authForm == AuthForm.login) {
                             _authForm = AuthForm.register;
                           } else {
                             _authForm = AuthForm.login;
                           }
-                        },
-                      ),
+                        });
+                      },
                       child: Text(
                         _authForm == AuthForm.login
                             ? 'Don\'t have an account ? Register'

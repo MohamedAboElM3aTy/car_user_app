@@ -1,7 +1,6 @@
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:user_home/features/home/domain/car_model.dart';
 
 class DetailsBox extends StatelessWidget {
   const DetailsBox({
@@ -27,7 +26,7 @@ class DetailsBox extends StatelessWidget {
         Expanded(child: Container()),
         _buildLabel(
           context: context,
-          label: 'Location',
+          label: car.location ?? 'egypt',
         ),
       ],
     );

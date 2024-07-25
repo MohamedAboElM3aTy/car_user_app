@@ -1,9 +1,8 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gap/gap.dart';
-import 'package:user_home/features/home/domain/car_model.dart';
 
 class CarHolderContainer extends StatelessWidget {
   const CarHolderContainer({
@@ -16,7 +15,7 @@ class CarHolderContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(8),
+      padding: const EdgeInsets.all(6),
       height: 100.h,
       decoration: BoxDecoration(
         color: Colors.white,
@@ -31,8 +30,8 @@ class CarHolderContainer extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(20.r),
-            child: Image.asset(
-              car.imagePath,
+            child: CachedNetworkImage(
+              imageUrl: car.imagePath,
               width: 100.w,
               height: 100.h,
               fit: BoxFit.cover,
@@ -89,24 +88,24 @@ class CarHolderContainer extends StatelessWidget {
             ],
           ),
           const Expanded(child: SizedBox()),
-          Align(
-            alignment: Alignment.topRight,
-            child: Container(
-              width: 30.w,
-              height: 30.h,
-              decoration: BoxDecoration(
-                color: Colors.grey.shade200,
-                shape: BoxShape.circle,
-              ),
-              child: const Center(
-                child: FaIcon(
-                  FontAwesomeIcons.solidHeart,
-                  size: 20.0,
-                  color: AppColors.heartGreyColor,
-                ),
-              ),
-            ),
-          ),
+          // Align(
+          //   alignment: Alignment.topRight,
+          //   child: Container(
+          //     width: 30.w,
+          //     height: 30.h,
+          //     decoration: BoxDecoration(
+          //       color: Colors.grey.shade200,
+          //       shape: BoxShape.circle,
+          //     ),
+          //     child: const Center(
+          //       child: FaIcon(
+          //         FontAwesomeIcons.solidHeart,
+          //         size: 20.0,
+          //         color: AppColors.heartGreyColor,
+          //       ),
+          //     ),
+          //   ),
+          // ),
         ],
       ),
     );

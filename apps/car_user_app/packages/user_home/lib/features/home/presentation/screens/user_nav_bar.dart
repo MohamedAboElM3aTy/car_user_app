@@ -1,7 +1,6 @@
 import 'package:core/app/constants/app_colors.dart';
 import 'package:core/app/extensions/context.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:persistent_bottom_nav_bar_2/persistent_tab_view.dart';
 import 'package:user_home/features/home/presentation/screens/user_home_screen.dart';
@@ -32,9 +31,6 @@ class _UserNavBarState extends State<UserNavBar> {
   List<Widget> _buildScreens() {
     return [
       const UserHomeScreen(),
-      const Center(
-        child: Text('Welcome To Favorites screen'),
-      ),
       const SettingsPage(),
     ];
   }
@@ -44,10 +40,6 @@ class _UserNavBarState extends State<UserNavBar> {
       _buildItem(
         label: 'Home',
         icon: CupertinoIcons.home,
-      ),
-      _buildItem(
-        label: 'Favorites',
-        icon: CupertinoIcons.heart,
       ),
       _buildItem(
         label: 'Profile',

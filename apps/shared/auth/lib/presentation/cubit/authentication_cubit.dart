@@ -5,8 +5,8 @@ import 'package:core/app/errors/generic_failure.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
-part 'authentication_state.dart';
 part 'authentication_cubit.freezed.dart';
+part 'authentication_state.dart';
 
 @injectable
 class AuthenticationCubit extends Cubit<AuthenticationState> {
@@ -26,7 +26,13 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
         lastName: appUser.lastName,
         userRole: appUser.userRole,
       );
-      await _supabaseAuthService.signUp(appUser: kwayesUser);
+      final response = await _supabaseAuthService.signUp(appUser: kwayesUser);
+      response.fold(
+        (error) => emit(AuthenticationState.error(message: error.message)),
+        (user) => emit(
+          AuthenticationState.authenticated(isUserInHisApp: user != null),
+        ),
+      );
       // final addedUser = await Supabase.instance.client.from('users').insert({
       //   kwayesUser.toMap(),
       // });
@@ -37,7 +43,7 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
       // } else {
       //   emit(AuthState.error(message: addedUser.error.message));
       // }
-      emit(const AuthenticationState.authenticated(isUserInHisApp: true));
+      // emit(const AuthenticationState.authenticated(isUserInHisApp: true));
     } on GenericFailure catch (error) {
       emit(AuthenticationState.error(message: error.toString()));
     }

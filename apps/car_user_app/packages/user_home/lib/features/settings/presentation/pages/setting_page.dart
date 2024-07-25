@@ -1,12 +1,11 @@
 import 'package:auth/di/injection_container.dart';
 import 'package:auth/presentation/cubit/logout_cubit.dart';
 import 'package:core/core.dart';
+import 'package:core/views/widgets/page_title.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
-import 'package:user_home/features/home/presentation/widgets/elliptical_container.dart';
-import 'package:user_home/features/home/presentation/widgets/page_title.dart';
 import 'package:user_home/features/settings/presentation/widgets/account_header_widget.dart';
 import 'package:user_home/features/settings/presentation/widgets/setting_list_tile.dart';
 
@@ -28,7 +27,6 @@ class _SettingsPageState extends State<SettingsPage> {
 
   @override
   void dispose() {
-    _logoutCubit.close();
     super.dispose();
   }
 
@@ -81,7 +79,9 @@ class _SettingsPageState extends State<SettingsPage> {
                     SettingListTile(
                       label: 'Booking History',
                       icon: Icons.history,
-                      onPressed: () {},
+                      onPressed: () => context.navigator.pushNamed(
+                        AppRoutes.userBookingHistoryRoute,
+                      ),
                     ),
                   ],
                 ),

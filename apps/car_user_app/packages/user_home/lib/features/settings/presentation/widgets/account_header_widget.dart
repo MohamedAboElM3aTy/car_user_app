@@ -1,4 +1,3 @@
-import 'package:auth/presentation/cubit/authentication_cubit.dart';
 import 'package:auth/presentation/cubit/logout_cubit.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
@@ -52,8 +51,7 @@ class _AccountHeaderWidgetState extends State<AccountHeaderWidget> {
                   message: 'Logout Success',
                   state: SnackBarStates.success,
                 );
-                BlocProvider.of<AuthenticationCubit>(context).logout();
-                context.navigator.pushNamed(AppRoutes.userHomeRoute);
+                context.navigator.pushNamed(AppRoutes.authRoute);
               },
               orElse: () => LoadingAlert.remove(context),
             );
