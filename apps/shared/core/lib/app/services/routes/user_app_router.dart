@@ -37,6 +37,11 @@ Route<dynamic> onGenerateUser(RouteSettings settings) {
         builder: (_) => const SearchScreen(),
         settings: settings,
       );
+    case AppRoutes.userBookingHistoryRoute:
+      return MaterialPageRoute(
+        builder: (_) => const BookingHistoryScreen(),
+        settings: settings,
+      );
     // case AppRoutes.userCarDetailRoute:
     //   return MaterialPageRoute(
     //     builder: (_) => CarDetailsScreen(),

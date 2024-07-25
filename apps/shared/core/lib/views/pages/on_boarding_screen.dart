@@ -3,6 +3,7 @@ import 'package:core/views/pages/onboarding_labels.dart';
 import 'package:core/views/widgets/custom_dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gap/gap.dart';
 
 class OnBoardingScreen extends StatefulWidget {
   const OnBoardingScreen({super.key});
@@ -30,59 +31,61 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        alignment: Alignment.center,
-        children: [
-          OnBoardingLabels(currentPage: _currentPage),
-          Positioned(
-            bottom: 60.h,
-            left: 10.w,
-            child: CustomizedDotsIndicator(
-              currentPage: _currentPage,
-              dotsCount: 2,
-            ),
-          ),
-          Positioned(
-            bottom: 40.h,
-            left: 15.w,
-            child: InkWell(
-              onTap: () => context.navigator.pushNamed(AppRoutes.authRoute),
-              child: Text(
-                'Skip',
-                style: context.textTheme.labelLarge!.copyWith(
-                  fontSize: 14.sp,
-                  fontWeight: FontWeight.w300,
-                  color: context.primaryColor,
-                ),
-              ),
-            ),
-          ),
-          PageView(
-            controller: _pageController,
-            onPageChanged: (pageNumber) {
-              setState(() => _currentPage = pageNumber);
-              if (pageNumber == 1) {
-                context.navigator.pushNamed(AppRoutes.authRoute);
-              }
-            },
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
             children: [
-              Center(
-                child: Image.asset(
-                  AppImages.carSet,
-                  fit: BoxFit.cover,
-                  width: 300.w,
+              Expanded(child: OnBoardingLabels(currentPage: _currentPage)),
+              Expanded(
+                flex: 2,
+                child: PageView(
+                  controller: _pageController,
+                  onPageChanged: (pageNumber) {
+                    setState(() => _currentPage = pageNumber);
+                  },
+                  children: [
+                    Image.asset(
+                      AppImages.carSet,
+                      width: context.screenWidth * 0.5,
+                    ),
+                    Image.asset(
+                      AppImages.manWithCar,
+                      width: context.screenWidth * 0.5,
+                      height: context.screenWidth * 0.4,
+                    ),
+                  ],
                 ),
               ),
-              Center(
-                child: Image.asset(
-                  AppImages.manWithCar,
-                  fit: BoxFit.cover,
-                  width: 300.w,
+              Align(
+                alignment: Alignment.bottomLeft,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    CustomizedDotsIndicator(
+                      currentPage: _currentPage,
+                      dotsCount: 2,
+                    ),
+                    const Gap(3),
+                    InkWell(
+                      onTap: () => context.navigator.pushNamed(
+                        AppRoutes.authRoute,
+                      ),
+                      child: Text(
+                        _currentPage == 0 ? 'Skip' : 'Start',
+                        style: context.textTheme.labelSmall!.copyWith(
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.w300,
+                          color: context.primaryColor,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],
           ),
-        ],
+        ),
       ),
     );
   }

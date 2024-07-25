@@ -20,8 +20,8 @@ class CustomizedDotsIndicator extends StatelessWidget {
       position: currentPage,
       decorator: DotsDecorator(
         activeColor: context.primaryColor,
-        size: const Size(20, 8),
-        activeSize: const Size(40, 8),
+        size: const Size(30, 8),
+        activeSize: const Size(50, 8),
         activeShape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(5.r),
         ),

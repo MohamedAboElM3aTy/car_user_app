@@ -1,9 +1,16 @@
 library core;
 
+/// [Data]
+export 'app/data/model/base_request_model.dart';
+export 'app/data/model/car_model.dart';
+export 'app/data/model/book_model.dart';
+
 /// [Constants]
 export 'app/constants/app_colors.dart';
 export 'app/constants/app_images.dart';
 export 'app/constants/app_lottie.dart';
+export 'app/constants/app_regex.dart';
+export 'app/constants/database_constants.dart';
 
 /// [Enums]
 export 'app/enums/app_enums.dart';
@@ -31,6 +38,12 @@ export 'app/services/theme/user_app_theme.dart';
 /// [Manager]
 export 'views/manager/app_bloc_observer.dart';
 
+/// [Cubits]
+export 'app/manager/add_car_cubit/cubit/add_car_cubit.dart';
+export 'app/manager/car_list_cubit/cubit/car_list_cubit.dart';
+export 'app/manager/book_list_cubit/booking_list_cubit.dart';
+export 'app/manager/make_book_cubit/book_cubit.dart';
+
 /// [Screen]
 export 'views/pages/splash_screen.dart';
 export 'views/pages/empty_screen.dart';
@@ -47,3 +60,6 @@ export 'views/widgets/divider/or_divider.dart';
 export 'views/widgets/text_fields/password_text_field.dart';
 export 'views/widgets/text_fields/rounded_text_field.dart';
 export 'views/widgets/loading_alert/loading_alert.dart';
+export 'views/widgets/elliptical_container.dart';
+export 'views/widgets/drop_downs/generic_drop_down_button.dart';
+export 'views/widgets/container_shimmer.dart';

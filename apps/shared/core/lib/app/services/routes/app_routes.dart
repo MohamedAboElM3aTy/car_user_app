@@ -11,6 +11,7 @@ class AppRoutes {
   static const String userCarDetailRoute = '/userCarDetail';
   static const String userCarListingRoute = '/userCarBooking';
   static const String userCarSearchRoute = '/userSearch';
+  static const String userBookingHistoryRoute = '/booking-history';
 
   /// [Admin Routes]
   static const String adminHomeRoute = '/AdminHome';

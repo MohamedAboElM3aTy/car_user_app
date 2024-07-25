@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 ThemeData adminTheme() {
   return ThemeData(
+    scaffoldBackgroundColor: AppColors.whiteColor,
     colorSchemeSeed: AppColors.greenSeedColor,
     fontFamily: GoogleFonts.lato().fontFamily,
     textTheme: GoogleFonts.latoTextTheme(),

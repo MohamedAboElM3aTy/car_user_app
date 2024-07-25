@@ -32,8 +32,10 @@ class EmptyScreen extends StatelessWidget {
                 SvgPicture.asset(AppImages.emptyLogo),
                 Text(
                   message ?? 'Something went wrong',
-                  style: context.textTheme.bodySmall!
-                      .copyWith(fontWeight: FontWeight.w500),
+                  style: context.textTheme.labelMedium!.copyWith(
+                    fontSize: 15.sp,
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
                 SizedBox(height: 5.h),
               ],

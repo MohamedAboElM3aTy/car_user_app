@@ -13,35 +13,34 @@ class OnBoardingLabels extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Positioned(
-      top: 100.h,
-      child: Column(
-        children: [
-          Text(
-            currentPage == 0
-                ? 'Welcome To our car \nrental app!'
-                : 'Find the perfect car\nfor your needs.',
-            style: context.textTheme.labelLarge!.copyWith(
-              fontSize: 24.sp,
-              fontWeight: FontWeight.bold,
-              color: context.primaryColor,
-            ),
-            textAlign: TextAlign.center,
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text(
+          currentPage == 0
+              ? 'Welcome To our car \nrental app!'
+              : 'Find the perfect car\nfor your needs.',
+          style: context.textTheme.labelLarge!.copyWith(
+            fontSize: 24.sp,
+            fontWeight: FontWeight.bold,
+            color: context.primaryColor,
           ),
-          const Gap(20),
-          Text(
-            currentPage == 0
-                ? 'Here you can browse\nand book a wide selection of \nvehicles'
-                : 'Choose from a variety of\nmakes and models',
-            style: context.textTheme.labelLarge!.copyWith(
-              fontSize: 16.sp,
-              color: context.primaryColor,
-            ),
-            textAlign: TextAlign.center,
-            maxLines: 3,
+          textAlign: TextAlign.center,
+        ),
+        const Gap(20),
+        Text(
+          currentPage == 0
+              ? 'Here you can browse\nand book a wide selection of \nvehicles'
+              : 'Choose from a variety of\nmakes and models',
+          style: context.textTheme.labelLarge!.copyWith(
+            fontSize: 16.sp,
+            color: context.primaryColor,
           ),
-        ],
-      ),
+          textAlign: TextAlign.center,
+          maxLines: 3,
+        ),
+      ],
     );
   }
 }
