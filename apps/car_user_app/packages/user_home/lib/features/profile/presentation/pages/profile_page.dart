@@ -1,4 +1,5 @@
 import 'package:auth/di/injection_container.dart';
+import 'package:auth/presentation/cubit/get_profile_cubit/get_profile_data_cubit.dart';
 import 'package:auth/presentation/cubit/logout_cubit.dart';
 import 'package:core/core.dart';
 import 'package:core/views/widgets/page_title.dart';
@@ -6,35 +7,45 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
-import 'package:user_home/features/settings/presentation/widgets/account_header_widget.dart';
-import 'package:user_home/features/settings/presentation/widgets/setting_list_tile.dart';
+import 'package:user_home/features/profile/presentation/widgets/account_header_widget.dart';
+import 'package:user_home/features/profile/presentation/widgets/setting_list_tile.dart';
 
-class SettingsPage extends StatefulWidget {
-  const SettingsPage({super.key});
+class ProfilePage extends StatefulWidget {
+  const ProfilePage({super.key});
 
   @override
-  State<SettingsPage> createState() => _SettingsPageState();
+  State<ProfilePage> createState() => _ProfilePageState();
 }
 
-class _SettingsPageState extends State<SettingsPage> {
+class _ProfilePageState extends State<ProfilePage> {
   late final LogoutCubit _logoutCubit;
+  late final GetProfileDataCubit _getProfileDataCubit;
 
   @override
   void initState() {
     _logoutCubit = getIt<LogoutCubit>();
+    _getProfileDataCubit = getIt<GetProfileDataCubit>()..fetchUserProfile();
     super.initState();
   }
 
   @override
   void dispose() {
     super.dispose();
+    _getProfileDataCubit.close();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocProvider(
-        create: (_) => _logoutCubit,
+      body: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (_) => _logoutCubit,
+          ),
+          BlocProvider(
+            create: (context) => _getProfileDataCubit,
+          ),
+        ],
         child: Stack(
           children: [
             const EllipticalContainer(),

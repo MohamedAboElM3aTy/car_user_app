@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:persistent_bottom_nav_bar_2/persistent_tab_view.dart';
 import 'package:user_home/features/home/presentation/screens/user_home_screen.dart';
-import 'package:user_home/features/settings/presentation/pages/setting_page.dart';
+import 'package:user_home/features/profile/presentation/pages/profile_page.dart';
 
 class UserNavBar extends StatefulWidget {
   const UserNavBar({super.key});
@@ -31,7 +31,7 @@ class _UserNavBarState extends State<UserNavBar> {
   List<Widget> _buildScreens() {
     return [
       const UserHomeScreen(),
-      const SettingsPage(),
+      const ProfilePage(),
     ];
   }
 

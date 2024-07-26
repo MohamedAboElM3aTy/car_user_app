@@ -30,7 +30,7 @@ class _BookSheetState extends State<BookSheet> {
           return Padding(
             padding: EdgeInsets.symmetric(horizontal: 10.w),
             child: SizedBox(
-              height: context.screenHeight * 0.6,
+              height: context.screenHeight * 0.4,
               width: context.screenWidth,
               child: Column(
                 children: [

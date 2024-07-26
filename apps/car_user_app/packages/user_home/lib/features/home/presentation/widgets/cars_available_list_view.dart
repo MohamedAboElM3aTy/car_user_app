@@ -24,7 +24,6 @@ class _CarsAvailableListViewState extends State<CarsAvailableListView> {
     _fetchCars();
   }
 
-  // TODO: To transfer to cubit
   Future<List<CarModel>> _fetchCars() async {
     try {
       final response =

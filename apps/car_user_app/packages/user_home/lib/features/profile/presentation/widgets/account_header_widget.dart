@@ -3,7 +3,7 @@ import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:user_home/features/settings/presentation/widgets/owner_details.dart';
+import 'package:user_home/features/profile/presentation/widgets/owner_details.dart';
 
 class AccountHeaderWidget extends StatefulWidget {
   const AccountHeaderWidget({super.key});

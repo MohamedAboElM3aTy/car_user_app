@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:admin_home/home/presentation/widgets/add_car_form.dart';
 import 'package:admin_home/home/presentation/widgets/car_container.dart';
 import 'package:core/app/services/app_service.dart';
@@ -109,7 +111,9 @@ class _Body extends StatelessWidget {
                   );
                 } else if (state.cars.isNotEmpty) {
                   return Positioned(
-                    top: context.screenHeight * 0.2,
+                    top: Platform.isIOS
+                        ? context.screenHeight * 0.2
+                        : context.screenHeight * 0.3,
                     left: 0.0,
                     right: 0.0,
                     child: ListView.separated(

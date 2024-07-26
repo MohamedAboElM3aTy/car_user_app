@@ -1,7 +1,7 @@
-import 'package:admin_home/booking_details/presentation/screens/history_screen.dart';
 import 'package:admin_home/home/presentation/pages/admin_home_screen.dart';
 import 'package:core/app/constants/app_colors.dart';
 import 'package:core/app/extensions/context.dart';
+import 'package:core/views/booking_history/screens/booking_history_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -32,7 +32,7 @@ class _AdminNavBarState extends State<AdminNavBar> {
   List<Widget> _buildScreens() {
     return [
       const AdminHomeScreen(),
-      const BookingDetailsScreen(),
+      const BookingHistoryScreen(),
     ];
   }
 

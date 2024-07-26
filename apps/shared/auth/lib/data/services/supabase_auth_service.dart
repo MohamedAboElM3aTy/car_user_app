@@ -12,7 +12,9 @@ abstract class SupabaseAuthService {
     required AppUser appUser,
   });
 
-  User? getCurrentUser();
+  Future<Either<GenericFailure, User>>? getCurrentUser();
+
+  User? getCurrentUserName();
 
   Future<Either<GenericFailure,bool>> signOut();
 }

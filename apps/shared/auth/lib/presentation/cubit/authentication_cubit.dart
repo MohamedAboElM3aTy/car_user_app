@@ -73,4 +73,13 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
   }
 
   void logout() => emit(const AuthenticationState.initial());
+
+  Future<void> getCurrentUser() async {
+    final user = _supabaseAuthService.getCurrentUser();
+    if (user != null) {
+      emit(const AuthenticationState.authenticated(isUserInHisApp: true));
+    } else {
+      emit(const AuthenticationState.initial());
+    }
+  }
 }

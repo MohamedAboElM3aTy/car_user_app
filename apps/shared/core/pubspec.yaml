@@ -28,6 +28,7 @@ dependencies:
   get_it: ^7.7.0
   google_fonts: ^6.2.1
   injectable: ^2.4.2
+  intl: ^0.19.0
   json_annotation: ^4.9.0
   lottie: ^3.1.2
   shimmer: ^3.0.0

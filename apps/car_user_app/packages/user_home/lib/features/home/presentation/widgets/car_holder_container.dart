@@ -34,7 +34,7 @@ class CarHolderContainer extends StatelessWidget {
               imageUrl: car.imagePath,
               width: 100.w,
               height: 100.h,
-              fit: BoxFit.cover,
+              fit: BoxFit.fill,
             ),
           ),
           const Gap(10),

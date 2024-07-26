@@ -2,12 +2,12 @@ part of 'booking_list_cubit.dart';
 
 class BookingListState extends Equatable {
   final bool isLoading;
+  final List<BookModel> booking;
   final Failure? failure;
-  final BookModel? booking;
 
   const BookingListState({
     this.isLoading = false,
-    this.booking,
+    this.booking = const [],
     this.failure,
   });
 
@@ -15,11 +15,11 @@ class BookingListState extends Equatable {
     return copyWith(
       isLoading: true,
       failure: null,
-      booking: null,
+      booking: [],
     );
   }
 
-  BookingListState success(BookModel booking) {
+  BookingListState success(List<BookModel> booking) {
     return copyWith(
       isLoading: false,
       failure: null,
@@ -31,14 +31,14 @@ class BookingListState extends Equatable {
     return copyWith(
       isLoading: false,
       failure: failure,
-      booking: null,
+      booking: [],
     );
   }
 
   BookingListState copyWith({
     bool? isLoading,
+    List<BookModel>? booking,
     Failure? failure,
-    BookModel? booking,
   }) {
     return BookingListState(
       isLoading: isLoading ?? this.isLoading,

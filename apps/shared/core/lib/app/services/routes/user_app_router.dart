@@ -1,5 +1,6 @@
 import 'package:auth/presentation/screens/auth_screen.dart';
 import 'package:core/core.dart';
+import 'package:core/views/booking_history/screens/booking_history_screen.dart';
 import 'package:core/views/pages/on_boarding_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:user_home/user_home.dart';
@@ -39,7 +40,7 @@ Route<dynamic> onGenerateUser(RouteSettings settings) {
       );
     case AppRoutes.userBookingHistoryRoute:
       return MaterialPageRoute(
-        builder: (_) => const BookingHistoryScreen(),
+        builder: (_) => BookingHistoryScreen(),
         settings: settings,
       );
     // case AppRoutes.userCarDetailRoute:
