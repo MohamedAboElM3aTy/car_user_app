@@ -36,10 +36,6 @@
 ## ScreenShots 📸  
 ### User App
 
-
-
-
-#
 ### Admin App
 
 
