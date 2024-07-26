@@ -1,3 +1,4 @@
+import 'package:auth/auth.dart';
 import 'package:auth/di/injection_container.dart';
 import 'package:auth/entity/app_user.dart';
 import 'package:auth/presentation/cubit/authentication_cubit.dart';
@@ -139,8 +140,9 @@ class _AuthScreenState extends State<AuthScreen> {
                     listener: (context, state) {
                       state.maybeWhen(
                         orElse: () => null,
-                        authenticated: (isUserInHisApp) async {
+                        authenticated: (isUserInHisApp, user) async {
                           if (isUserInHisApp) {
+                            context.read<AuthCubit>().setUser(user);
                             widget.userRole == UserRole.user
                                 ? context.navigator.pushReplacementNamed(
                                     AppRoutes.userHomeRoute)

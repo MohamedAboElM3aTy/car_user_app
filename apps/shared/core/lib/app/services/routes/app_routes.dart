@@ -15,4 +15,5 @@ class AppRoutes {
 
   /// [Admin Routes]
   static const String adminHomeRoute = '/AdminHome';
+  static const String adminBookHistory = '/adminBookingHistory';
 }

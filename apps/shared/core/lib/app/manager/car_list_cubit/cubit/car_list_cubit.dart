@@ -15,12 +15,13 @@ class CarListCubit extends Cubit<CarListState> {
     _databaseServices = DatabaseServiceImpl();
   }
 
-  Future<void> fetchCars() async {
+  Future<void> fetchCars({String? searchText}) async {
     emit(state.loading());
     final result = await _databaseServices.fetch(
       table: DataBaseConstants.carTable,
       responseFromMap: (json) =>
           json['data'].map<CarModel>((car) => CarModel.fromMap(car)).toList(),
+      searchText: searchText,
     );
     result.fold(
       (failure) => emit(state.error(failure)),

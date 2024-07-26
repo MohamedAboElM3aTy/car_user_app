@@ -1,9 +1,9 @@
 import 'package:core/core.dart';
+import 'package:core/views/widgets/page_title.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:user_home/features/home/presentation/widgets/cars_available_list_view.dart';
-import 'package:core/views/widgets/page_title.dart';
 
 class CarListingScreen extends StatefulWidget {
   const CarListingScreen({super.key});
@@ -30,7 +30,7 @@ class _Body extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
-          const EllipticalContainer(),
+          EllipticalContainer(bottom: context.screenHeight * 0.74),
           Positioned(
             top: context.screenHeight * 0.15,
             left: 25.0,
@@ -45,9 +45,7 @@ class _Body extends StatelessWidget {
               backgroundColor: context.seedColor.secondary,
             ),
           ),
-          CarsAvailableListView(
-            height: context.screenHeight * 0.38,
-          ),
+          CarsAvailableListView(height: context.screenHeight * 0.3),
         ],
       ),
     );

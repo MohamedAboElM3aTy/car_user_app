@@ -75,7 +75,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                         _currentPage == 0 ? 'Skip' : 'Start',
                         style: context.textTheme.labelSmall!.copyWith(
                           fontSize: 14.sp,
-                          fontWeight: FontWeight.w300,
+                          fontWeight: FontWeight.w600,
                           color: context.primaryColor,
                         ),
                       ),

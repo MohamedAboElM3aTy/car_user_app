@@ -3,6 +3,7 @@ import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
+import 'package:intl/intl.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 import 'package:user_home/features/home/presentation/widgets/date_bottom_sheet.dart';
 
@@ -58,8 +59,12 @@ class _FilterDateSheetState extends State<FilterDateSheet> {
                 );
                 if (startDateResult != null) {
                   setState(() => _dateRange = startDateResult);
-                  _startDateController.text = _dateRange!.startDate.toString();
-                  _endDateController.text = _dateRange!.endDate.toString();
+                  _startDateController.text = DateFormat('yyyy-MM-dd')
+                      .format(_dateRange!.startDate!)
+                      .toString();
+                  _endDateController.text = DateFormat('yyyy-MM-dd')
+                      .format(_dateRange!.endDate!)
+                      .toString();
 
                   widget.onDateRangeSelected(_dateRange);
                 }
@@ -79,8 +84,12 @@ class _FilterDateSheetState extends State<FilterDateSheet> {
                 );
                 if (endDateResult != null) {
                   setState(() => _dateRange = endDateResult);
-                  _startDateController.text = _dateRange!.startDate.toString();
-                  _endDateController.text = _dateRange!.endDate.toString();
+                  _startDateController.text = DateFormat('yyyy-MM-dd')
+                      .format(_dateRange!.startDate!)
+                      .toString();
+                  _endDateController.text = DateFormat('yyyy-MM-dd')
+                      .format(_dateRange!.endDate!)
+                      .toString();
                   widget.onDateRangeSelected(_dateRange);
                 }
               },
@@ -117,13 +126,16 @@ class _FilterDateSheetState extends State<FilterDateSheet> {
             border: Border.all(color: Colors.grey),
             borderRadius: BorderRadius.circular(5.r),
           ),
-          child: TextField(
+          child: InkWell(
             onTap: onTap,
-            controller:
-                label == 'From' ? _startDateController : _endDateController,
-            decoration: InputDecoration(
-              border: InputBorder.none,
-              hintText: hintText,
+            child: TextField(
+              enabled: false,
+              controller:
+                  label == 'From' ? _startDateController : _endDateController,
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                hintText: hintText,
+              ),
             ),
           ),
         ),

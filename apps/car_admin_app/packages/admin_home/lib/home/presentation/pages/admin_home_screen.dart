@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:admin_home/home/presentation/widgets/add_car_form.dart';
 import 'package:admin_home/home/presentation/widgets/car_container.dart';
 import 'package:core/app/services/app_service.dart';
@@ -93,7 +91,7 @@ class _Body extends StatelessWidget {
         ),
         body: Stack(
           children: [
-            const EllipticalContainer(),
+            EllipticalContainer(bottom: context.screenHeight * 0.7),
             Positioned(
               top: context.screenHeight * 0.13,
               left: 25.0,
@@ -104,17 +102,22 @@ class _Body extends StatelessWidget {
             BlocBuilder<CarListCubit, CarListState>(
               builder: (context, state) {
                 if (state.isLoading) {
-                  return const ContainerShimmer();
+                  return Positioned(
+                    top: context.screenHeight * 0.23,
+                    left: 0.0,
+                    bottom: 0,
+                    right: 0.0,
+                    child: const ContainerShimmer(),
+                  );
                 } else if (state.failure != null) {
                   return Text(
                     'Error: ${state.error.toString()}',
                   );
                 } else if (state.cars.isNotEmpty) {
                   return Positioned(
-                    top: Platform.isIOS
-                        ? context.screenHeight * 0.2
-                        : context.screenHeight * 0.3,
+                    top: context.screenHeight * 0.23,
                     left: 0.0,
+                    bottom: 0,
                     right: 0.0,
                     child: ListView.separated(
                       separatorBuilder: (context, index) => const Gap(20),
@@ -122,7 +125,6 @@ class _Body extends StatelessWidget {
                       itemBuilder: (ctx, index) => CarContainer(
                         car: state.cars[index],
                       ),
-                      shrinkWrap: true,
                     ),
                   );
                 }

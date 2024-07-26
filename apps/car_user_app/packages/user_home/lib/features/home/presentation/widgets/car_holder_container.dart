@@ -40,6 +40,7 @@ class CarHolderContainer extends StatelessWidget {
           const Gap(10),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
                 'Model ${car.year}',
@@ -59,7 +60,6 @@ class CarHolderContainer extends StatelessWidget {
               ),
               const Gap(10),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
                     '${car.speed} km/h',

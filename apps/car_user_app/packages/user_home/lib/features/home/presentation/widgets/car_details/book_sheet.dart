@@ -1,3 +1,4 @@
+import 'package:auth/auth.dart';
 import 'package:core/core.dart';
 import 'package:core/views/widgets/bottom_sheet_label.dart';
 import 'package:flutter/material.dart';
@@ -23,8 +24,12 @@ class _BookSheetState extends State<BookSheet> {
   PickerDateRange? _dateRange;
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => BookCubit(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => BookCubit(),
+        ),
+      ],
       child: Builder(
         builder: (context) {
           return Padding(
@@ -74,6 +79,11 @@ class _BookSheetState extends State<BookSheet> {
                                   carId: widget.car.id,
                                   startDate: _dateRange!.startDate!,
                                   endDate: _dateRange!.endDate!,
+                                  userId: context
+                                      .read<AuthCubit>()
+                                      .state
+                                      .user!
+                                      .userId,
                                 ),
                               );
                         }

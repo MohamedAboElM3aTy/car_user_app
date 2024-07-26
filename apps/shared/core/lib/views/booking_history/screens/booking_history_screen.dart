@@ -1,5 +1,4 @@
-import 'dart:io';
-
+import 'package:auth/auth.dart' as auth;
 import 'package:core/core.dart';
 import 'package:core/views/booking_history/widgets/booking_history_card.dart';
 import 'package:core/views/widgets/page_title.dart';
@@ -12,9 +11,14 @@ class BookingHistoryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final state = context.read<auth.AuthCubit>().state;
+
     return Scaffold(
       body: BlocProvider(
-        create: (context) => BookingListCubit()..getBookings(),
+        create: (context) => BookingListCubit()
+          ..getBookings(
+            userId: state.user?.userId,
+          ),
         child: const _Body(),
       ),
     );
@@ -29,18 +33,13 @@ class _Body extends StatefulWidget {
 }
 
 class __BodyState extends State<_Body> {
-  bool isIOS = Platform.isIOS;
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        EllipticalContainer(
-          bottom:
-              isIOS ? context.screenHeight * 0.74 : context.screenHeight * 0.69,
-        ),
+        EllipticalContainer(bottom: context.screenHeight * 0.75),
         Positioned(
-          top:
-              isIOS ? context.screenHeight * 0.15 : context.screenHeight * 0.12,
+          top: context.screenHeight * 0.15,
           left: 25.0,
           right: 0.0,
           bottom: 0.0,
@@ -49,9 +48,7 @@ class __BodyState extends State<_Body> {
         Positioned(
           top: 30.h,
           left: 20.w,
-          child: Platform.isIOS
-              ? CommonCloseButton(backgroundColor: context.secondaryColor)
-              : const SizedBox.shrink(),
+          child: CommonCloseButton(backgroundColor: context.secondaryColor),
         ),
         BlocBuilder<BookingListCubit, BookingListState>(
           builder: (context, state) {
@@ -65,10 +62,14 @@ class __BodyState extends State<_Body> {
               );
             }
             if (state.failure != null) {
-              return const Center(child: Text('No Bookings'));
+              return EmptyScreen(
+                message: 'Error Fetching: ${state.failure.toString()}',
+              );
+            } else if (state.booking.isEmpty) {
+              return const EmptyScreen(message: 'No Car Bookings Yet');
             } else if (state.booking.isNotEmpty) {
               return Positioned(
-                top: context.screenHeight * 0.22,
+                top: context.screenHeight * 0.30,
                 left: 25.0,
                 right: 25.0,
                 bottom: 0.0,

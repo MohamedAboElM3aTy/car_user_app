@@ -9,11 +9,11 @@ class SolidHeartComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      top: context.screenHeight * 0.28,
-      right: 25.w,
+      top: context.screenHeight * 0.29,
+      right: context.screenWidth * 0.05,
       child: Container(
-        width: 70.w,
-        height: 70.h,
+        width: 50.w,
+        height: 50.h,
         decoration: BoxDecoration(
             shape: BoxShape.circle,
             color: AppColors.heartRedColor,

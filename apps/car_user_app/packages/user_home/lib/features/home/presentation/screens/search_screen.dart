@@ -1,7 +1,9 @@
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:core/views/widgets/page_title.dart';
+import 'package:gap/gap.dart';
+import 'package:user_home/features/home/presentation/widgets/cars_available_list_view.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
@@ -11,6 +13,36 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: context.primaryColor,
+        centerTitle: true,
+        title: Text(
+          'Search Page',
+          style: context.textTheme.titleLarge!.copyWith(
+            fontSize: 16.sp,
+            color: AppColors.whiteColor,
+          ),
+        ),
+      ),
+      body: BlocProvider(
+        create: (context) => CarListCubit()..fetchCars(searchText: ''),
+        child: const _Body(),
+      ),
+    );
+  }
+}
+
+class _Body extends StatefulWidget {
+  const _Body();
+
+  @override
+  State<_Body> createState() => _BodyState();
+}
+
+class _BodyState extends State<_Body> {
   late final TextEditingController _searchController;
 
   @override
@@ -27,49 +59,29 @@ class _SearchScreenState extends State<SearchScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
+    return Padding(
+      padding: EdgeInsets.symmetric(
+        horizontal: 16.w,
+        vertical: 10.h,
+      ),
+      child: Column(
         children: [
-          const EllipticalContainer(),
-          Positioned(
-            top: context.screenHeight * 0.12,
-            left: 25.0,
-            right: 0.0,
-            bottom: 0.0,
-            child: const PageTitle(title: 'Search Page'),
+          RoundedTextField(
+            controller: _searchController,
+            validator: (car) {
+              if (car == null || car.isEmpty) {
+                return 'Please enter a car name';
+              }
+              return null;
+            },
+            hintText: 'Search For Cars',
+            icon: Icons.search,
+            changed: (car) {
+              context.read<CarListCubit>().fetchCars(searchText: car);
+            },
           ),
-          Positioned(
-            top: 30.h,
-            left: 20.w,
-            child: CommonCloseButton(
-              backgroundColor: context.seedColor.secondary,
-            ),
-          ),
-          Positioned(
-            top: context.screenHeight * 0.36,
-            left: 0.0,
-            right: 0.0,
-            bottom: 0.0,
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.w),
-              child: Column(
-                children: [
-                  RoundedTextField(
-                    controller: _searchController,
-                    changed: (car) => _searchController.text = car,
-                    validator: (car) {
-                      if (car == null || car.isEmpty) {
-                        return 'Please enter car model';
-                      }
-                      return null;
-                    },
-                    hintText: 'Search',
-                    icon: Icons.search,
-                  ),
-                ],
-              ),
-            ),
-          ),
+          const Gap(10),
+          const CarsAvailableListView(isSearch: true),
         ],
       ),
     );

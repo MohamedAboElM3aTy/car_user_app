@@ -6,6 +6,7 @@ class AuthenticationState with _$AuthenticationState {
 
   const factory AuthenticationState.authenticated({
     required bool isUserInHisApp,
+    required AuthResponseModel user,
   }) = _Authenticated;
 
   const factory AuthenticationState.unauthenticated() = _Unauthenticated;

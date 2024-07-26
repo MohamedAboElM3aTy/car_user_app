@@ -1,4 +1,4 @@
-import 'package:auth/presentation/cubit/logout_cubit.dart';
+import 'package:auth/auth.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,45 +12,25 @@ class AccountHeaderWidget extends StatefulWidget {
 }
 
 class _AccountHeaderWidgetState extends State<AccountHeaderWidget> {
-  late final LogoutCubit _logoutCubit;
-
-  @override
-  void initState() {
-    _logoutCubit = BlocProvider.of<LogoutCubit>(context);
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         const OwnerDetails(),
-        BlocConsumer<LogoutCubit, LogoutState>(
-          bloc: _logoutCubit,
+        BlocConsumer<AuthCubit, AuthState>(
           listener: (context, state) {
-            state.maybeWhen(
-              error: (message) {
-                LoadingAlert.remove(context);
-                context.showSnackBar(
-                  message: 'Ops An error Occur',
-                  state: SnackBarStates.error,
-                );
-              },
-              success: () {
-                LoadingAlert.remove(context);
-                context.showSnackBar(
-                  message: 'Logout Success',
-                  state: SnackBarStates.success,
-                );
-                context.navigator.pushNamed(AppRoutes.authRoute);
-              },
-              orElse: () => LoadingAlert.remove(context),
-            );
+            if (state.isAuthenticated == false) {
+              context.showSnackBar(
+                message: 'Logout Successful',
+                state: SnackBarStates.success,
+              );
+              context.navigator.pushReplacementNamed(AppRoutes.authRoute);
+            }
           },
           builder: (context, state) {
             return TextButton.icon(
-              onPressed: () async => await _logoutCubit.logOut(),
+              onPressed: () async => context.read<AuthCubit>().logout(),
               icon: Icon(
                 Icons.logout,
                 color: context.primaryColor,

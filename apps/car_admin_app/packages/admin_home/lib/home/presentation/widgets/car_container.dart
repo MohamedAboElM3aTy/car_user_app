@@ -27,13 +27,11 @@ class CarContainer extends StatelessWidget {
         ),
         child: Stack(
           children: [
-            // TODO: To review image height
             ClipRRect(
               borderRadius: BorderRadius.circular(16.r),
               child: CachedNetworkImage(
                 imageUrl: car.imagePath,
                 fit: BoxFit.fill,
-                // width: double.infinity,
               ),
             ),
             const GradientContainer(),

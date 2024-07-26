@@ -48,6 +48,7 @@ export 'app/manager/make_book_cubit/book_cubit.dart';
 export 'views/pages/splash_screen.dart';
 export 'views/pages/empty_screen.dart';
 export 'views/widgets/divider/build_divider.dart';
+export 'views/booking_history/screens/admin_booking_history_screen.dart';
 
 /// [Widgets]
 export 'views/widgets/buttons/app_button.dart';

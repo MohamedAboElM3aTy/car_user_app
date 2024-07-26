@@ -1,3 +1,4 @@
+import 'package:auth/data/model/auth_response_model.dart';
 import 'package:auth/data/services/supabase_auth_service.dart';
 import 'package:auth/entity/app_user.dart';
 import 'package:bloc/bloc.dart';
@@ -30,20 +31,9 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
       response.fold(
         (error) => emit(AuthenticationState.error(message: error.message)),
         (user) => emit(
-          AuthenticationState.authenticated(isUserInHisApp: user != null),
+          AuthenticationState.authenticated(isUserInHisApp: user != null, user: user!),
         ),
       );
-      // final addedUser = await Supabase.instance.client.from('users').insert({
-      //   kwayesUser.toMap(),
-      // });
-      // if (addedUser.error == null) {
-      //   emit(
-      // const AuthState.authenticated(isUserInHisApp: true),
-      //   );
-      // } else {
-      //   emit(AuthState.error(message: addedUser.error.message));
-      // }
-      // emit(const AuthenticationState.authenticated(isUserInHisApp: true));
     } on GenericFailure catch (error) {
       emit(AuthenticationState.error(message: error.toString()));
     }
@@ -64,7 +54,7 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
       response.fold(
         (error) => emit(AuthenticationState.error(message: error.message)),
         (user) => emit(
-          AuthenticationState.authenticated(isUserInHisApp: user != null),
+          AuthenticationState.authenticated(isUserInHisApp: user != null, user: user!),
         ),
       );
     } on GenericFailure catch (error) {
@@ -74,12 +64,15 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
 
   void logout() => emit(const AuthenticationState.initial());
 
-  Future<void> getCurrentUser() async {
-    final user = _supabaseAuthService.getCurrentUser();
-    if (user != null) {
-      emit(const AuthenticationState.authenticated(isUserInHisApp: true));
-    } else {
-      emit(const AuthenticationState.initial());
-    }
-  }
+  // Future<void> getCurrentUser() async {
+  //   final user = await _supabaseAuthService.getCurrentUser();
+  //   if (user != null) {
+  //     user.fold(
+  //       (error) => emit(AuthenticationState.error(message: error.message)),
+  //       (user) => 
+  //     emit(const AuthenticationState.authenticated(isUserInHisApp: true, user: user)),);
+  //   } else {
+  //     emit(const AuthenticationState.initial());
+  //   }
+  // }
 }

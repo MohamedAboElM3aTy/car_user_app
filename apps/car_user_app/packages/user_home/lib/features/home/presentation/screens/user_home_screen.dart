@@ -1,11 +1,11 @@
 import 'package:core/core.dart';
+import 'package:core/views/widgets/page_title.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:user_home/features/home/presentation/widgets/car_category_list_view.dart';
 import 'package:user_home/features/home/presentation/widgets/cars_available_list_view.dart';
 import 'package:user_home/features/home/presentation/widgets/custom_app_bar.dart';
-import 'package:core/views/widgets/page_title.dart';
 
 class UserHomeScreen extends StatefulWidget {
   const UserHomeScreen({super.key});
@@ -31,7 +31,9 @@ class _Body extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        const EllipticalContainer(),
+        EllipticalContainer(
+          bottom: context.screenHeight * 0.7,
+        ),
         const CustomAppBar(),
         Positioned(
           top: context.screenHeight * 0.14,
@@ -42,7 +44,7 @@ class _Body extends StatelessWidget {
         ),
         const CarCategoryListView(),
         Positioned(
-          top: context.screenHeight * 0.22,
+          top: context.screenHeight * 0.25,
           left: 25.0,
           right: 25.0,
           bottom: 0.0,

@@ -40,14 +40,9 @@ Route<dynamic> onGenerateUser(RouteSettings settings) {
       );
     case AppRoutes.userBookingHistoryRoute:
       return MaterialPageRoute(
-        builder: (_) => BookingHistoryScreen(),
+        builder: (_) => const BookingHistoryScreen(),
         settings: settings,
       );
-    // case AppRoutes.userCarDetailRoute:
-    //   return MaterialPageRoute(
-    //     builder: (_) => CarDetailsScreen(),
-    //     settings: settings,
-    //   );
     default:
       return MaterialPageRoute(
         builder: (_) => const EmptyScreen(

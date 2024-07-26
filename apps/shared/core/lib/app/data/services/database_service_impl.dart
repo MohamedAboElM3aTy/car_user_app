@@ -1,4 +1,5 @@
 import 'package:core/app/data/model/base_request_model.dart';
+import 'package:core/app/data/model/filter_params.dart';
 import 'package:core/app/data/services/database_services.dart';
 import 'package:core/app/errors/generic_failure.dart';
 import 'package:dartz/dartz.dart';
@@ -31,10 +32,20 @@ class DatabaseServiceImpl implements DatabaseServices {
     required String table,
     int? id,
     required R Function(Map<String, dynamic> map) responseFromMap,
+    List<FilterParam>? filter,
+    String? searchText,
   }) async {
     try {
-      final data = await _supabase.from(table).select('*');
-      return Right(responseFromMap({"data": data}));
+      var query = _supabase.from(table).select('*');
+      if (filter != null) {
+        for (var item in filter) {
+          query = query.filter(item.column, item.condition, item.value);
+        }
+      }
+      if (searchText != null) {
+        query = query.textSearch('model_name', searchText);
+      }
+      return Right(responseFromMap({"data": await query}));
     } on Exception catch (e) {
       return Left(GenericFailure(message: e.toString()));
     }

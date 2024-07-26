@@ -1,12 +1,17 @@
 import 'dart:developer';
 
-import 'package:auth/auth.dart';
-import 'package:bloc/bloc.dart';
+import 'package:auth/auth.dart' as auth;
+import 'package:auth/presentation/cubit/auth_cubit/auth_cubit.dart';
 import 'package:core/core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hydrated_bloc/hydrated_bloc.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:user_home/features/home/presentation/screens/user_nav_bar.dart';
 
 class UserApp extends StatelessWidget {
   const UserApp({super.key});
@@ -19,10 +24,30 @@ class UserApp extends StatelessWidget {
       // Adapt the text according to min width & Height
       minTextAdapt: true,
       useInheritedMediaQuery: true,
-      builder: (_, child) => MaterialApp(
-        title: 'Car User App',
-        onGenerateRoute: onGenerateUser,
-        theme: userTheme(),
+      builder: (_, child) => BlocProvider(
+        create: (context) => AuthCubit(),
+        child: Builder(builder: (context) {
+          return BlocBuilder<auth.AuthCubit, auth.AuthState>(
+            builder: (context, state) {
+              return MaterialApp(
+                title: 'Car User App',
+                onGenerateRoute: onGenerateUser,
+                theme: userTheme(),
+                onGenerateInitialRoutes: (initialRoute) => [
+                  MaterialPageRoute(
+                    builder: (_) {
+                      if (state.isAuthenticated) {
+                        return const UserNavBar();
+                      } else {
+                        return const SplashScreen();
+                      }
+                    },
+                  ),
+                ],
+              );
+            },
+          );
+        }),
       ),
     );
   }
@@ -43,8 +68,13 @@ Future<void> initializeApp() async {
     url: Env.supabaseUrl,
     anonKey: Env.supabaseAnonKey,
   );
-  await initAuthGetIt();
+  await auth.initAuthGetIt();
   Bloc.observer = AppBlocObserver();
+  HydratedBloc.storage = await HydratedStorage.build(
+    storageDirectory: kIsWeb
+        ? HydratedStorage.webStorageDirectory
+        : await getApplicationDocumentsDirectory(),
+  );
   FlutterError.onError = (details) {
     log(
       '🚨 ${details.exceptionAsString()}',
