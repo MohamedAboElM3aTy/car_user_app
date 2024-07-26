@@ -13,8 +13,12 @@
 * User Can view available cars & can book them with a specific Date. 
 * The Car can't be booked twice for the same date range.
 * Admin Can apply (CRUD) operations for the car.
-* User & admin both can view booking history.
 * Allow users to search for available cars.
+* User & admin both can view booking history.
+* Users can't book the same car at the same time.
+* Admin can view all booking history.
+* If admin deletes a car all the bookings related to it will be cancelled.
+* Reference booking_table to car_table using car_id as a foreign key.
 
 
 ## Features :dart:
@@ -31,6 +35,8 @@
 * [x] Implement Features as a Flutter Packages.
 * [x] The Admin can do (CRUD) operation on car_table. 
 * [x] The User Can manage bookings with filter Dates. 
+* [x] Search feature. 
+* [x] Hydrated bloc to cache the user state. 
 
 
 ## ScreenShots 📸  
