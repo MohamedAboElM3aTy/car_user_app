@@ -62,7 +62,7 @@ class _BookSheetState extends State<BookSheet> {
                         },
                         error: (message) {
                           context.showSnackBar(
-                            message: 'Ops An error Occur',
+                            message: 'Can\'t book this Date',
                             state: SnackBarStates.error,
                           );
                         },

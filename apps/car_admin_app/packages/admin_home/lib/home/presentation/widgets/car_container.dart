@@ -21,7 +21,6 @@ class CarContainer extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 10.w),
       child: Container(
-        height: context.screenHeight * 0.28,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16.r),
         ),

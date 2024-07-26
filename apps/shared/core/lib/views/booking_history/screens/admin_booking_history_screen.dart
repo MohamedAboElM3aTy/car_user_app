@@ -43,13 +43,13 @@ class __BodyState extends State<_Body> {
         Positioned(
           top: 30.h,
           left: 20.w,
-          child: AccountHeaderWidget(isAdmin: true),
+          child: const AccountHeaderWidget(isAdmin: true),
         ),
         BlocBuilder<BookingListCubit, BookingListState>(
           builder: (context, state) {
             if (state.isLoading) {
               return Positioned(
-                top: context.screenHeight * 0.22,
+                top: context.screenHeight * 0.25,
                 left: 25.0,
                 right: 25.0,
                 bottom: 0.0,

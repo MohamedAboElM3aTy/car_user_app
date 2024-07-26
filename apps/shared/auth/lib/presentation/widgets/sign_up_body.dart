@@ -34,7 +34,6 @@ class SignUpBody extends StatelessWidget {
         RoundedTextField(
           controller: firstNameController,
           focusNode: firstNameFocusNode,
-          autoFocus: authForm == AuthForm.register,
           onEditingComplete: () =>
               FocusScope.of(context).requestFocus(lastNameFocusNode),
           changed: (firstName) => firstNameController.text = firstName,

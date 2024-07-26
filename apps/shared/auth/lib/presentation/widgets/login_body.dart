@@ -25,7 +25,6 @@ class LoginBody extends StatelessWidget {
         RoundedTextField(
           controller: emailController,
           focusNode: emailFocusNode,
-          autoFocus: authForm == AuthForm.login,
           onEditingComplete: () =>
               FocusScope.of(context).requestFocus(passwordFocusNode),
           changed: (email) => emailController.text = email,

@@ -55,9 +55,7 @@ class CarsAvailableListView extends StatelessWidget {
                       ),
                     ),
                   ),
-                  child: CarHolderContainer(
-                    car: state.cars[index],
-                  ),
+                  child: CarHolderContainer(car: state.cars[index]),
                 ),
               ).toList().addSeparator(const Gap(20)),
             ),
