@@ -6,7 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class SplashScreen extends StatefulWidget {
   const SplashScreen({
     super.key,
-    this.carColor = Colors.blue,
+    required this.carColor,
   });
 
   final Color carColor;
@@ -41,15 +41,6 @@ class _SplashScreenState extends State<SplashScreen>
     Timer(
       const Duration(seconds: 6),
       () async {
-        // if (ConfigLocalDataSource.isAppFirstOpen()) {
-        //   Navigator.pushReplacementNamed(context, OnBoardingScreen.routeName);
-        // } else {
-        //   if (AuthLocalDataSource.getUserData().isEmpty) {
-        //     Navigator.pushReplacementNamed(context, LoginScreen.routeName);
-        //   } else {
-        //     Navigator.pushReplacementNamed(context, MainScreen.routeName);
-        //   }
-        // }
         await context.navigator.pushNamed(AppRoutes.onBoardingRoute);
       },
     );

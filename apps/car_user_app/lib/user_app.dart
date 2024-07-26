@@ -39,7 +39,7 @@ class UserApp extends StatelessWidget {
                       if (state.isAuthenticated) {
                         return const UserNavBar();
                       } else {
-                        return const SplashScreen();
+                        return const SplashScreen(carColor: Colors.blue);
                       }
                     },
                   ),

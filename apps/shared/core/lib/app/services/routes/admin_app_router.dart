@@ -1,7 +1,6 @@
 import 'package:admin_home/admin_home.dart';
 import 'package:auth/presentation/screens/auth_screen.dart';
 import 'package:core/core.dart';
-import 'package:core/views/booking_history/screens/admin_booking_history_screen.dart';
 import 'package:core/views/pages/on_boarding_screen.dart';
 import 'package:flutter/material.dart';
 

@@ -39,7 +39,7 @@ class AdminApp extends StatelessWidget {
                         if (state.isAuthenticated) {
                           return const AdminNavBar();
                         } else {
-                          return const SplashScreen();
+                          return const SplashScreen(carColor: Colors.red);
                         }
                       },
                     ),
