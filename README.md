@@ -8,13 +8,13 @@
 * My Task is to build two apps ... Admin & User apps.
 * I created the features as Flutter packages to be reusable in any project.
 * I used Melos to handle the mono repo logic and implement two apps in the same repo.
-* I used Supabase to handle authentication & handle validation [Admin or Usdr]
+* I used Supabase to handle authentication & handle validation [Admin or User]
 * I used Supabase as a backend server side to store & handle data.
 * User Can view available cars & can book them with a specific Date. 
 * The Car can't be booked twice for the same date range.
 * Admin Can apply (CRUD) operations for the car.
 * User & admin both can view booking history.
-* 
+* Allow users to search for available cars.
 
 
 ## Features :dart:
