@@ -38,7 +38,7 @@ class _ProfilePageState extends State<ProfilePage> {
               padding: EdgeInsets.symmetric(horizontal: 16.w),
               child: const Column(
                 children: [
-                  AccountHeaderWidget(),
+                  AccountHeaderWidget(isAdmin: false),
                   Gap(10),
                   Divider(),
                 ],

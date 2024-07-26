@@ -4,6 +4,7 @@ import 'package:core/views/widgets/page_title.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:user_home/features/profile/presentation/widgets/account_header_widget.dart';
 
 class AdminBookingHistoryScreen extends StatelessWidget {
   const AdminBookingHistoryScreen({super.key});
@@ -42,7 +43,7 @@ class __BodyState extends State<_Body> {
         Positioned(
           top: 30.h,
           left: 20.w,
-          child: CommonCloseButton(backgroundColor: context.secondaryColor),
+          child: AccountHeaderWidget(isAdmin: true),
         ),
         BlocBuilder<BookingListCubit, BookingListState>(
           builder: (context, state) {
