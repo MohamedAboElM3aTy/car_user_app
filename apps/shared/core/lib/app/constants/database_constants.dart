@@ -5,5 +5,5 @@ class DataBaseConstants {
   const DataBaseConstants._();
   
   static const String carTable = 'car_table';
-  static const String bookTable = 'book_table';
+  static const String bookTable = 'bookings_table';
 }

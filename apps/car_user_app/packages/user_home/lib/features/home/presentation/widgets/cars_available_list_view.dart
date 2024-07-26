@@ -1,7 +1,7 @@
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:user_home/features/home/presentation/screens/car_details_screen.dart';
 import 'package:user_home/features/home/presentation/widgets/car_holder_container.dart';
 
@@ -18,21 +18,12 @@ class CarsAvailableListView extends StatefulWidget {
 }
 
 class _CarsAvailableListViewState extends State<CarsAvailableListView> {
+  late final CarListCubit _carListCubit;
+  
   @override
   void initState() {
     super.initState();
-    _fetchCars();
-  }
-
-  Future<List<CarModel>> _fetchCars() async {
-    try {
-      final response =
-          await Supabase.instance.client.from('car_table').select('*');
-      return response.map((car) => CarModel.fromMap(car)).toList();
-    } catch (error) {
-      debugPrint('Error fetching cars from Supabase: ${error.toString()}');
-      rethrow;
-    }
+    _carListCubit = BlocProvider.of<CarListCubit>(context);
   }
 
   @override
@@ -42,34 +33,33 @@ class _CarsAvailableListViewState extends State<CarsAvailableListView> {
       left: 25.0,
       right: 25.0,
       bottom: 0.0,
-      child: FutureBuilder<List<CarModel>>(
-        future: _fetchCars(),
-        builder: (context, carsSnapshot) {
-          if (carsSnapshot.connectionState == ConnectionState.waiting) {
-            return const Center(child: ContainerShimmer());
-          } else if (carsSnapshot.hasError) {
+      child: BlocBuilder<CarListCubit, CarListState>(
+        builder: (context, state) {
+          if (state.isLoading) {
+            return const ContainerShimmer();
+          } else if (state.failure != null) {
             return Text(
-              'Error: ${carsSnapshot.error.toString()}',
+              'Error: ${state.failure.toString()}',
             );
-          } else if (!carsSnapshot.hasData || carsSnapshot.data!.isEmpty) {
-            return const Text(
-              'No cars available.',
+          } else if (state.cars.isEmpty) {
+            return const EmptyScreen(
+              message: 'No cars available',
             );
-          } else if (carsSnapshot.hasData) {
+          } else if (state.cars.isNotEmpty) {
             return SingleChildScrollView(
               child: Column(
                 children: List.generate(
-                  carsSnapshot.data!.length,
+                  state.cars.length,
                   (index) => InkWell(
                     onTap: () => context.navigator.push(
                       MaterialPageRoute(
                         builder: (_) => CarDetailsScreen(
-                          car: carsSnapshot.data![index],
+                          car: state.cars[index],
                         ),
                       ),
                     ),
                     child: CarHolderContainer(
-                      car: carsSnapshot.data![index],
+                      car: state.cars[index],
                     ),
                   ),
                 ).toList().addSeparator(const Gap(20)),

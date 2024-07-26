@@ -1,5 +1,7 @@
+import 'package:auth/presentation/cubit/get_profile_cubit/get_profile_data_cubit.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class OwnerDetails extends StatefulWidget {
@@ -10,16 +12,9 @@ class OwnerDetails extends StatefulWidget {
 }
 
 class _OwnerDetailsState extends State<OwnerDetails> {
-  // TODO: To fetch user name
-  // late final GetProfileDataCubit _profileCubit;
-  // final SupabaseAuthService _auth = SupabaseAuthImplementation();
-  // late final String _name;
-
   @override
   void initState() {
     super.initState();
-    // _profileCubit = BlocProvider.of<GetProfileDataCubit>(context);
-    // _name = _auth.getCurrentUserName()?.userMetadata?['name'];
   }
 
   @override
@@ -41,26 +36,27 @@ class _OwnerDetailsState extends State<OwnerDetails> {
           ),
         ),
         10.w.horizontalSpace,
-        Text(
-          'Mohamed',
-          style: context.textTheme.labelLarge!.copyWith(
-            fontSize: 15.sp,
-            fontWeight: FontWeight.bold,
-            color: context.primaryColor,
-          ),
+        BlocBuilder<GetProfileDataCubit, GetProfileDataState>(
+          builder: (context, state) {
+            return state.maybeWhen(
+              orElse: () => const Text('Un Named User'),
+              error: (message) => Text(message),
+              success: (user) {
+                final fullName = user.userMetadata!['firstName'] +
+                    ' ' +
+                    user.userMetadata!['lastName'];
+                return Text(
+                  fullName,
+                  style: context.textTheme.labelLarge!.copyWith(
+                    fontSize: 15.sp,
+                    fontWeight: FontWeight.w200,
+                    color: context.seedColor.secondary,
+                  ),
+                );
+              },
+            );
+          },
         ),
-        // BlocBuilder<GetProfileDataCubit, GetProfileDataState>(
-        //   builder: (context, state) {
-        //     return state.maybeWhen(
-        //       orElse: () => const Text('Un Named User'),
-        //       error: (message) => Text(message),
-        //       success: (user) {
-        //         final name = user.userMetadata!['name'] as String;
-        //         return Text(name);
-        //       },
-        //     );
-        //   },
-        // ),
       ],
     );
   }

@@ -2,7 +2,6 @@ import 'package:auth/presentation/cubit/logout_cubit.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:user_home/features/profile/presentation/widgets/owner_details.dart';
 
 class AccountHeaderWidget extends StatefulWidget {
@@ -13,11 +12,6 @@ class AccountHeaderWidget extends StatefulWidget {
 }
 
 class _AccountHeaderWidgetState extends State<AccountHeaderWidget> {
-  Future<void> _logOut(BuildContext context) async {
-    LoadingAlert.show(context);
-    await _logoutCubit.logOut();
-  }
-
   late final LogoutCubit _logoutCubit;
 
   @override
@@ -29,11 +23,9 @@ class _AccountHeaderWidgetState extends State<AccountHeaderWidget> {
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        const Expanded(
-          child: OwnerDetails(),
-        ),
-        SizedBox(width: 10.w),
+        const OwnerDetails(),
         BlocConsumer<LogoutCubit, LogoutState>(
           bloc: _logoutCubit,
           listener: (context, state) {
@@ -58,7 +50,7 @@ class _AccountHeaderWidgetState extends State<AccountHeaderWidget> {
           },
           builder: (context, state) {
             return TextButton.icon(
-              onPressed: () => _logOut(context),
+              onPressed: () async => await _logoutCubit.logOut(),
               icon: Icon(
                 Icons.logout,
                 color: context.primaryColor,

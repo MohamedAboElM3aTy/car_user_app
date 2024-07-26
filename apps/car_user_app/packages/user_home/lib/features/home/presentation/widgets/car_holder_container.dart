@@ -16,7 +16,7 @@ class CarHolderContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(6),
-      height: 100.h,
+      height: context.screenHeight * 0.15,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(25.r),
@@ -33,7 +33,7 @@ class CarHolderContainer extends StatelessWidget {
             child: CachedNetworkImage(
               imageUrl: car.imagePath,
               width: 100.w,
-              height: 100.h,
+              height: context.screenHeight,
               fit: BoxFit.fill,
             ),
           ),
@@ -42,7 +42,7 @@ class CarHolderContainer extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                car.year,
+                'Model ${car.year}',
                 style: context.textTheme.labelLarge!.copyWith(
                   color: AppColors.secondText,
                   fontSize: 13.sp,
@@ -59,6 +59,7 @@ class CarHolderContainer extends StatelessWidget {
               ),
               const Gap(10),
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
                     '${car.speed} km/h',
@@ -77,7 +78,7 @@ class CarHolderContainer extends StatelessWidget {
                   ),
                   const Gap(10),
                   Text(
-                    '\$${car.price}',
+                    '\$${car.price}/Day',
                     style: context.textTheme.labelMedium!.copyWith(
                       fontSize: 13.sp,
                       color: AppColors.mainTextColor,
@@ -87,25 +88,6 @@ class CarHolderContainer extends StatelessWidget {
               ),
             ],
           ),
-          const Expanded(child: SizedBox()),
-          // Align(
-          //   alignment: Alignment.topRight,
-          //   child: Container(
-          //     width: 30.w,
-          //     height: 30.h,
-          //     decoration: BoxDecoration(
-          //       color: Colors.grey.shade200,
-          //       shape: BoxShape.circle,
-          //     ),
-          //     child: const Center(
-          //       child: FaIcon(
-          //         FontAwesomeIcons.solidHeart,
-          //         size: 20.0,
-          //         color: AppColors.heartGreyColor,
-          //       ),
-          //     ),
-          //   ),
-          // ),
         ],
       ),
     );

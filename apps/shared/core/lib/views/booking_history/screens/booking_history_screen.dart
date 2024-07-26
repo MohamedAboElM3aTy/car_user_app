@@ -50,7 +50,7 @@ class __BodyState extends State<_Body> {
           top: 30.h,
           left: 20.w,
           child: Platform.isIOS
-              ? const CommonCloseButton()
+              ? CommonCloseButton(backgroundColor: context.secondaryColor)
               : const SizedBox.shrink(),
         ),
         BlocBuilder<BookingListCubit, BookingListState>(

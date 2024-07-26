@@ -1,5 +1,6 @@
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:user_home/features/home/presentation/widgets/car_category_list_view.dart';
 import 'package:user_home/features/home/presentation/widgets/cars_available_list_view.dart';
@@ -14,6 +15,18 @@ class UserHomeScreen extends StatefulWidget {
 }
 
 class _UserHomeScreenState extends State<UserHomeScreen> {
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) => CarListCubit()..fetchCars(),
+      child: const _Body(),
+    );
+  }
+}
+
+class _Body extends StatelessWidget {
+  const _Body();
+
   @override
   Widget build(BuildContext context) {
     return Stack(

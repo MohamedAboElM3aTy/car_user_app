@@ -57,7 +57,7 @@ class _BookSheetState extends State<BookSheet> {
                         },
                         error: (message) {
                           context.showSnackBar(
-                            message: message.toString(),
+                            message: 'Ops An error Occur',
                             state: SnackBarStates.error,
                           );
                         },

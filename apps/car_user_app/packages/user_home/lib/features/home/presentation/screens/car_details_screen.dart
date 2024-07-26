@@ -36,7 +36,7 @@ class _CarDetailsScreenState extends State<CarDetailsScreen> {
               width: context.screenWidth,
               child: CachedNetworkImage(
                 imageUrl: widget.car.imagePath,
-                fit: BoxFit.cover,
+                fit: BoxFit.fill,
               ),
             ),
           ),
