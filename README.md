@@ -37,6 +37,7 @@
 * [x] The User Can manage bookings with filter Dates. 
 * [x] Search feature. 
 * [x] Hydrated bloc to cache the user state. 
+* [x] Cloud functions to trigger the car_table with booking_table. 
 
 
 ## Live Demos 📸  
@@ -45,10 +46,12 @@
 
 https://github.com/user-attachments/assets/725b07c4-6664-4fc5-8912-e4330d77cf10
 
-# After user had booked
+## After user had booked
 https://github.com/user-attachments/assets/892f79c0-51dc-43fb-9f8c-106c3ae46236
 
 ###
+
+
 
 ### User App
 
