@@ -23,4 +23,6 @@ class AppImages {
   static const String teslaImage = 'car_user_app/../assets/png/car3Tesla.png';
   static const String bmwImage = 'car_user_app/../assets/png/car4Bmw.png';
   static const String chevroImage = 'car_user_app/../assets/png/car5Chevro.png';
+
+  static const String profileImage = 'car_user_app/../assets/images/person.png';
 }

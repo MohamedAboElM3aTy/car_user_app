@@ -24,7 +24,7 @@ class _OwnerDetailsState extends State<OwnerDetails> {
             borderRadius: BorderRadius.circular(8.r),
             image: const DecorationImage(
               image: AssetImage(
-                AppImages.onBoardingImage,
+                AppImages.profileImage,
               ),
               fit: BoxFit.cover,
             ),
