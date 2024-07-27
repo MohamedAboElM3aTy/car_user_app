@@ -14,10 +14,9 @@
 * The Car can't be booked twice for the same date range.
 * Admin Can apply (CRUD) operations for the car.
 * Allow users to search for available cars.
-* User & admin both can view booking history.
-* Users can't book the same car at the same time.
-* Admin can view all booking history.
-* If admin deletes a car all the bookings related to it will be cancelled.
+* Car Can't be booked twice at the same time.
+* Admin can view all booking history but user can view only his booking history.
+* If the admin deletes a car, all the related bookings will be canceled.
 * Reference booking_table to car_table using car_id as a foreign key.
 
 
@@ -30,7 +29,6 @@
 * [x] Supabase Authentication (Login, Register & Logout) 
 * [x] Validation to not allowing users in any app to log to the other app
 * [x] Supabase Storage
-* [x] Search for location & get current Location.
 * [x] Cubit as State Mangement
 * [x] Implement Features as a Flutter Packages.
 * [x] The Admin can do (CRUD) operation on car_table. 
