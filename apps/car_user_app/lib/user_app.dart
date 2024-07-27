@@ -1,7 +1,6 @@
 import 'dart:developer';
 
-import 'package:auth/auth.dart' as auth;
-import 'package:auth/presentation/cubit/auth_cubit/auth_cubit.dart';
+import 'package:auth/auth.dart';
 import 'package:core/core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -25,9 +24,9 @@ class UserApp extends StatelessWidget {
       minTextAdapt: true,
       useInheritedMediaQuery: true,
       builder: (_, child) => BlocProvider(
-        create: (context) => AuthCubit(),
+        create: (context) => HydratedAuthCubit(),
         child: Builder(builder: (context) {
-          return BlocBuilder<auth.AuthCubit, auth.AuthState>(
+          return BlocBuilder<HydratedAuthCubit, HydratedAuthState>(
             builder: (context, state) {
               return MaterialApp(
                 title: 'Car User App',
@@ -68,7 +67,7 @@ Future<void> initializeApp() async {
     url: Env.supabaseUrl,
     anonKey: Env.supabaseAnonKey,
   );
-  await auth.initAuthGetIt();
+  await initAuthGetIt();
   Bloc.observer = AppBlocObserver();
   HydratedBloc.storage = await HydratedStorage.build(
     storageDirectory: kIsWeb

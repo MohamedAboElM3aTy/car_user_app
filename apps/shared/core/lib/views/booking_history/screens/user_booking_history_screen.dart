@@ -6,12 +6,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class BookingHistoryScreen extends StatelessWidget {
-  const BookingHistoryScreen({super.key});
+class UserBookingHistoryScreen extends StatelessWidget {
+  const UserBookingHistoryScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final state = context.read<auth.AuthCubit>().state;
+    final state = context.read<auth.HydratedAuthCubit>().state;
 
     return Scaffold(
       body: BlocProvider(

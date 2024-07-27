@@ -31,7 +31,7 @@ class _OwnerDetailsState extends State<OwnerDetails> {
           ),
         ),
         10.w.horizontalSpace,
-        BlocBuilder<AuthCubit, AuthState>(
+        BlocBuilder<HydratedAuthCubit, HydratedAuthState>(
           builder: (context, state) {
             if (state.isAuthenticated) {
               final fullName =

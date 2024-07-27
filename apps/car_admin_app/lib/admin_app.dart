@@ -1,7 +1,7 @@
 import 'dart:developer';
 
 import 'package:admin_home/admin_home.dart';
-import 'package:auth/auth.dart' as auth;
+import 'package:auth/auth.dart';
 import 'package:core/core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -26,8 +26,8 @@ class AdminApp extends StatelessWidget {
       child: Builder(
         builder: (context) {
           return BlocProvider(
-            create: (context) => auth.AuthCubit(),
-            child: BlocBuilder<auth.AuthCubit, auth.AuthState>(
+            create: (context) => HydratedAuthCubit(),
+            child: BlocBuilder<HydratedAuthCubit, HydratedAuthState>(
               builder: (context, state) {
                 return MaterialApp(
                   title: 'Car admin App',
@@ -69,7 +69,7 @@ Future<void> initializeApp() async {
     url: Env.supabaseUrl,
     anonKey: Env.supabaseAnonKey,
   );
-  await auth.initAuthGetIt();
+  await initAuthGetIt();
   Bloc.observer = AppBlocObserver();
   HydratedBloc.storage = await HydratedStorage.build(
     storageDirectory: kIsWeb

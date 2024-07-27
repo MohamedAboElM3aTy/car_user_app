@@ -1,7 +1,7 @@
 part of 'auth_cubit.dart';
 
-class AuthState extends Equatable {
-  const AuthState({this.user, this.token});
+class HydratedAuthState extends Equatable {
+  const HydratedAuthState({this.user, this.token});
 
   final AuthResponseModel? user;
   final String? token;
@@ -11,10 +11,10 @@ class AuthState extends Equatable {
   @override
   List<Object?> get props => [user, token];
 
-  factory AuthState.fromMap(Map<String, dynamic> map, String token) {
-    if (map.isEmpty) return const AuthState();
+  factory HydratedAuthState.fromMap(Map<String, dynamic> map, String token) {
+    if (map.isEmpty) return const HydratedAuthState();
     final model = AuthStateModel.fromMap(map);
-    return AuthState(
+    return HydratedAuthState(
       user: model.user,
       token: token,
     );
@@ -27,8 +27,8 @@ class AuthState extends Equatable {
         ).toJson()
       : {};
 
-  AuthState copyWith({AuthResponseModel? user, String? token}) {
-    return AuthState(
+  HydratedAuthState copyWith({AuthResponseModel? user, String? token}) {
+    return HydratedAuthState(
       user: user ?? this.user,
       token: token ?? this.token,
     );

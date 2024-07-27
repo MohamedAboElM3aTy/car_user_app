@@ -80,7 +80,7 @@ class _BookSheetState extends State<BookSheet> {
                                   startDate: _dateRange!.startDate!,
                                   endDate: _dateRange!.endDate!,
                                   userId: context
-                                      .read<AuthCubit>()
+                                      .read<HydratedAuthCubit>()
                                       .state
                                       .user!
                                       .userId,

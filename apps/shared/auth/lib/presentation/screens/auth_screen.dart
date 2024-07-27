@@ -1,7 +1,5 @@
 import 'package:auth/auth.dart';
-import 'package:auth/di/injection_container.dart';
 import 'package:auth/entity/app_user.dart';
-import 'package:auth/presentation/cubit/authentication_cubit.dart';
 import 'package:auth/presentation/widgets/forget_password.dart';
 import 'package:auth/presentation/widgets/login_body.dart';
 import 'package:auth/presentation/widgets/password_validations.dart';
@@ -142,7 +140,7 @@ class _AuthScreenState extends State<AuthScreen> {
                         orElse: () => null,
                         authenticated: (isUserInHisApp, user) async {
                           if (isUserInHisApp) {
-                            context.read<AuthCubit>().setUser(user);
+                            context.read<HydratedAuthCubit>().setUser(user);
                             widget.userRole == UserRole.user
                                 ? context.navigator.pushReplacementNamed(
                                     AppRoutes.userHomeRoute)

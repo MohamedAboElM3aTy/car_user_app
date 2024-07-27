@@ -24,7 +24,7 @@ class _AccountHeaderWidgetState extends State<AccountHeaderWidget> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         widget.isAdmin ? const SizedBox.shrink() : const OwnerDetails(),
-        BlocConsumer<AuthCubit, AuthState>(
+        BlocConsumer<HydratedAuthCubit, HydratedAuthState>(
           listener: (context, state) {
             if (state.isAuthenticated == false) {
               context.showSnackBar(
@@ -37,7 +37,8 @@ class _AccountHeaderWidgetState extends State<AccountHeaderWidget> {
           builder: (context, state) {
             return widget.isAdmin
                 ? InkWell(
-                    onTap: () async => context.read<AuthCubit>().logout(),
+                    onTap: () async =>
+                        context.read<HydratedAuthCubit>().logout(),
                     child: Icon(
                       Icons.logout,
                       size: 24.sp,
@@ -45,7 +46,8 @@ class _AccountHeaderWidgetState extends State<AccountHeaderWidget> {
                     ),
                   )
                 : TextButton.icon(
-                    onPressed: () async => context.read<AuthCubit>().logout(),
+                    onPressed: () async =>
+                        context.read<HydratedAuthCubit>().logout(),
                     icon: Icon(
                       Icons.logout,
                       color: context.primaryColor,
