@@ -23,7 +23,7 @@ Route<dynamic> onGenerateAdmin(RouteSettings settings) {
     case AppRoutes.adminHomeRoute:
       final screen = settings.arguments as Widget?;
       return MaterialPageRoute(
-        builder: (_) => TestAdminNavBar(homeScreen: screen),
+        builder: (_) => AdminNavBar(homeScreen: screen),
         settings: settings,
       );
     case AppRoutes.adminBookHistory:

@@ -68,4 +68,4 @@ export 'views/widgets/container_shimmer.dart';
 
 
 /// [Nav-Bar]
- export 'views/nav_bar/test_admin_nav_bar.dart';
+ export 'views/nav_bar/admin_nav_bar.dart';

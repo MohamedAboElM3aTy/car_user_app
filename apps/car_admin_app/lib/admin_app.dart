@@ -37,7 +37,9 @@ class AdminApp extends StatelessWidget {
                     MaterialPageRoute(
                       builder: (_) {
                         if (state.isAuthenticated) {
-                          return const TestAdminNavBar(homeScreen: AdminHomeScreen());
+                          return const AdminNavBar(
+                            homeScreen: AdminHomeScreen(),
+                          );
                         } else {
                           return const SplashScreen(carColor: Colors.red);
                         }
