@@ -1,4 +1,4 @@
-import 'package:admin_home/home/data/models/request/add_car_request_model.dart';
+import 'package:core/app/data/model/requests/add_car_request_model.dart';
 import 'package:core/app/data/services/database_service_impl.dart';
 import 'package:core/app/data/services/database_services.dart';
 import 'package:core/core.dart';

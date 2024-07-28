@@ -25,13 +25,15 @@ class SupabaseAuthImplementation implements SupabaseAuthService {
           'userRole': appUser.userRole.name,
         },
       );
-      return Right(AuthResponseModel(
-        userId: userCredentials.user!.id,
-        email: userCredentials.user!.email ?? '',
-        firstName: appUser.firstName,
-        lastName: appUser.lastName,
-        token: userCredentials.session?.accessToken ?? '',
-      ));
+      return Right(
+        AuthResponseModel(
+          userId: userCredentials.user!.id,
+          email: userCredentials.user!.email ?? '',
+          firstName: appUser.firstName,
+          lastName: appUser.lastName,
+          token: userCredentials.session?.accessToken ?? '',
+        ),
+      );
     } on Exception catch (error) {
       return Left(
         GenericFailure(
@@ -58,15 +60,15 @@ class SupabaseAuthImplementation implements SupabaseAuthService {
           ),
         );
       }
-      if(userCredentials.user != null) {
+      if (userCredentials.user != null) {
         final user = UserMetaData.fromMap(userCredentials.user!.userMetadata!);
         return Right(AuthResponseModel(
-        userId: userCredentials.user!.id,
-        email: userCredentials.user!.email ??'',
-        firstName: user.firstName,
-        lastName: user.lastName,
-        token: userCredentials.session?.accessToken ?? '',
-      ));
+          userId: userCredentials.user!.id,
+          email: userCredentials.user!.email ?? '',
+          firstName: user.firstName,
+          lastName: user.lastName,
+          token: userCredentials.session?.accessToken ?? '',
+        ));
       }
       return Left(
         GenericFailure(

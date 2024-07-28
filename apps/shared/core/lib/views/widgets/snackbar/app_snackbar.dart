@@ -1,5 +1,4 @@
 import 'package:core/core.dart';
-import 'package:core/app/enums/app_enums.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

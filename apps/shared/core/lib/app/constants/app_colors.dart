@@ -16,12 +16,13 @@ class AppColors {
   static const Color secondText = Color(0xff807F7B);
   static const Color backgroundColor = Color(0xFFeaeef7);
   static const Color error = Color(0xffCF4747);
-  static const Color lightError = Color(0xfffaeded);
+  
   static const Color redColor = Color(0xFFFF6D83);
   static const Color divider = Color(0xffCAC4D0);
   static const Color blackColor = Color.fromARGB(255, 7, 7, 7);
   static const Color whiteColor = Color.fromARGB(255, 254, 253, 253);
   static const Color lightWarningColor = Color(0xffFFF6EE);
+  static const Color lightError = Color(0xfffaeded);
   static const Color heartGreyColor = Color(0xFFa6aebe);
   static const Color heartRedColor = Color(0xFFff7575);
   static const Color mainTextColor = Color(0xFF202442);

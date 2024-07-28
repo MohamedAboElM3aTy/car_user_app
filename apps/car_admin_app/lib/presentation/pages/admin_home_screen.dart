@@ -1,5 +1,5 @@
-import 'package:admin_home/home/presentation/widgets/add_car_form.dart';
-import 'package:admin_home/home/presentation/widgets/car_container.dart';
+import '../widgets/add_car_form.dart';
+import '../widgets/car_container.dart';
 import 'package:core/app/services/app_service.dart';
 import 'package:core/core.dart';
 import 'package:core/views/widgets/bottom_sheet_label.dart';

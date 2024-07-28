@@ -1,4 +1,4 @@
-import 'package:admin_home/home/presentation/pages/admin_home_screen.dart';
+import 'admin_home_screen.dart';
 import 'package:core/core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

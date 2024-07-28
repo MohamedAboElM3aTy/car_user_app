@@ -4,6 +4,7 @@ library core;
 export 'app/data/model/base_request_model.dart';
 export 'app/data/model/car_model.dart';
 export 'app/data/model/book_model.dart';
+export 'app/data/model/requests/add_car_request_model.dart';
 
 /// [Constants]
 export 'app/constants/app_colors.dart';
@@ -64,3 +65,7 @@ export 'views/widgets/loading_alert/loading_alert.dart';
 export 'views/widgets/elliptical_container.dart';
 export 'views/widgets/drop_downs/generic_drop_down_button.dart';
 export 'views/widgets/container_shimmer.dart';
+
+
+/// [Nav-Bar]
+ export 'views/nav_bar/test_admin_nav_bar.dart';
