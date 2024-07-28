@@ -1,4 +1,3 @@
-import 'package:admin_home/home/presentation/pages/admin_home_screen.dart';
 import 'package:core/core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -6,7 +5,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:persistent_bottom_nav_bar_2/persistent_tab_view.dart';
 
 class AdminNavBar extends StatefulWidget {
-  const AdminNavBar({super.key});
+  const AdminNavBar({
+    super.key,
+    required this.homeScreen,
+  });
+
+  final Widget? homeScreen;
 
   @override
   State<AdminNavBar> createState() => _AdminNavBarState();
@@ -29,7 +33,11 @@ class _AdminNavBarState extends State<AdminNavBar> {
 
   List<Widget> _buildScreens() {
     return [
-      const AdminHomeScreen(),
+      widget.homeScreen != null
+          ? widget.homeScreen!
+          : const EmptyScreen(
+              message: 'Error To navigate to admin home screen',
+            ),
       const AdminBookingHistoryScreen(),
     ];
   }

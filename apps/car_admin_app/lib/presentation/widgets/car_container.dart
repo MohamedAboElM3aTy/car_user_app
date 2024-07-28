@@ -1,7 +1,7 @@
-import 'package:admin_home/home/presentation/widgets/car_container_description.dart';
-import 'package:admin_home/home/presentation/widgets/car_details_row.dart';
-import 'package:admin_home/home/presentation/widgets/edit_button.dart';
-import 'package:admin_home/home/presentation/widgets/gradient_container.dart';
+import 'car_container_description.dart';
+import 'car_details_row.dart';
+import 'edit_button.dart';
+import 'gradient_container.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';

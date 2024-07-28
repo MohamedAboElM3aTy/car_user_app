@@ -11,10 +11,11 @@ class DatabaseServiceImpl implements DatabaseServices {
   final _supabase = Supabase.instance.client;
 
   @override
-  Future<Either<Failure, R>> insert<R>(
-      {required String table,
-      required BaseRequestModel requestModel,
-      required R Function(Map<String, dynamic> map) responseFromMap}) async {
+  Future<Either<Failure, R>> insert<R>({
+    required String table,
+    required BaseRequestModel requestModel,
+    required R Function(Map<String, dynamic> map) responseFromMap,
+  }) async {
     try {
       final result =
           await _supabase.from(table).insert(requestModel.toJson()).select();

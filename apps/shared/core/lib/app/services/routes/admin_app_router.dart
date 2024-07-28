@@ -1,4 +1,3 @@
-import 'package:admin_home/admin_home.dart';
 import 'package:auth/presentation/screens/auth_screen.dart';
 import 'package:core/core.dart';
 import 'package:core/views/pages/on_boarding_screen.dart';
@@ -8,9 +7,7 @@ Route<dynamic> onGenerateAdmin(RouteSettings settings) {
   switch (settings.name) {
     case AppRoutes.splashRoute:
       return MaterialPageRoute(
-        builder: (_) => const SplashScreen(
-          carColor: Colors.red,
-        ),
+        builder: (_) => const SplashScreen(carColor: Colors.red),
         settings: settings,
       );
     case AppRoutes.onBoardingRoute:
@@ -24,8 +21,9 @@ Route<dynamic> onGenerateAdmin(RouteSettings settings) {
         settings: settings,
       );
     case AppRoutes.adminHomeRoute:
+      final screen = settings.arguments as Widget?;
       return MaterialPageRoute(
-        builder: (_) => const AdminNavBar(),
+        builder: (_) => AdminNavBar(homeScreen: screen),
         settings: settings,
       );
     case AppRoutes.adminBookHistory:

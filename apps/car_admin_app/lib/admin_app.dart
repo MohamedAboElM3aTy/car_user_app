@@ -1,7 +1,7 @@
 import 'dart:developer';
 
-import 'package:admin_home/admin_home.dart';
 import 'package:auth/auth.dart';
+import 'package:car_admin_app/presentation/pages/admin_home_screen.dart';
 import 'package:core/core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -37,7 +37,9 @@ class AdminApp extends StatelessWidget {
                     MaterialPageRoute(
                       builder: (_) {
                         if (state.isAuthenticated) {
-                          return const AdminNavBar();
+                          return const AdminNavBar(
+                            homeScreen: AdminHomeScreen(),
+                          );
                         } else {
                           return const SplashScreen(carColor: Colors.red);
                         }

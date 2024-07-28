@@ -8,8 +8,6 @@ environment:
   flutter: ">=1.17.0"
 
 dependencies:
-  admin_home:
-    path: ../../../apps/car_admin_app/packages/admin_home/
   auth:
     path: ../auth/
   bloc: ^8.1.4
@@ -32,6 +30,7 @@ dependencies:
   intl: ^0.19.0
   json_annotation: ^4.9.0
   lottie: ^3.1.2
+  persistent_bottom_nav_bar_2: ^5.0.3
   shimmer: ^3.0.0
   supabase_flutter: ^2.5.8
   user_home:
