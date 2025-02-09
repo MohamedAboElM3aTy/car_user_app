@@ -8,5 +8,7 @@
         "SUPABASE",
         "syncfusion",
         "vsync"
-    ]
+    ],
+    "pieces.cloudCapabilities": "Blended",
+    "pieces.telemetry": true
 }
